@@ -1,3 +1,5 @@
+package com.webaut.project;
+
 import com.webaut.project.pages.Login;
 import cucumber.api.java.en.Given;
 
