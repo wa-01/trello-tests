@@ -11,14 +11,14 @@ public class Login extends AbstractPage {
     @FindBy(css = "input[id = password]")
     private WebElement userPasswordTextField;
 
-    @FindBy (css = ".button.button-green")
+    @FindBy(css = ".button.button-green")
     private WebElement logginButton;
 
     public Login() {
         driver.get("https://trello.com/login");
     }
 
-    public Header loginTrello(String userName, String password){
+    public Header loginTrello(String userName, String password) {
         action.setValue(userNameTextField, userName);
         action.setValue(userPasswordTextField, password);
         action.click(logginButton);
