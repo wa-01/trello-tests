@@ -12,6 +12,7 @@ import org.junit.Assert;
 import java.util.Map;
 
 public class ListSteps {
+    private ListFormContent listContent = new ListFormContent();
     @And("a board is created")
     public void aBoardIsCreated() {
         //TODO: replace with code to create a board
@@ -32,8 +33,23 @@ public class ListSteps {
 
     @Then("I validate the new list is {string}")
     public void iValidateTheNewListIs(String listTitle) {
-        ListFormContent listContent = new ListFormContent();
         String actualLisTitle = listContent.getListTitle();
         Assert.assertEquals(actualLisTitle, listTitle);
+    }
+
+    @When("I click the list name {string}")
+    public void iClickTheListName(String listTitle) {
+        listContent.clickEditListButton(listTitle);
+    }
+
+    @And("I set a new list title {string}")
+    public void iSetANewListTitle(String newListTitle) {
+        listContent.setListTitle(newListTitle);
+    }
+
+    @Then("I validate the new title is {string}")
+    public void iValidateTheNewTitleIs(String newTitle) {
+        String actualTitle = listContent.getListTitle();
+        Assert.assertEquals(newTitle, actualTitle);
     }
 }

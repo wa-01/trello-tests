@@ -36,6 +36,11 @@ public class WebDriverAction {
         webElement.sendKeys(value);
     }
 
+    public void setValue(WebElement webElement, CharSequence value) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.sendKeys(value);
+    }
+
     public String getText(WebElement webElement) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getText();
