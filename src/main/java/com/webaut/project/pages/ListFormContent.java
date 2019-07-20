@@ -10,11 +10,14 @@ public class ListFormContent extends AbstractPage{
     @FindBy (css = "textarea:focus")
     private WebElement listHeaderEditable;
 
+    @FindBy (css = ".list-header-extras-menu")
+    private WebElement listActionsButton;
+
     private String listTitleLabel = ".list-header-name-assist";
     public static final String LIST_HEADER = "//h2[contains(text(),'%s')]/preceding-sibling::div";
 
     public String getListTitle(){
-        return action.getTextFromHiddenElement(By.cssSelector(listTitleLabel));
+        return action.getAttribute(By.cssSelector(listTitleLabel), "innerText");
     }
     public void clickEditListButton(String listTitle){
         action.click(By.xpath((String.format(LIST_HEADER, listTitle))));
@@ -23,6 +26,11 @@ public class ListFormContent extends AbstractPage{
     public void setListTitle(String newTitle){
         action.setValue(listHeaderEditable, newTitle);
         action.setValue(listHeaderEditable, Keys.ENTER);
+    }
+
+    public ListActions clickListActionsButton(){
+        action.click(listActionsButton);
+        return new ListActions();
     }
 
 }

@@ -51,18 +51,13 @@ public class WebDriverAction {
         return driver.findElement(selector).getText();
     }
 
-    public String getTextFromHiddenElement(By selector) {
-        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
-        return driver.findElement(selector).getAttribute("innerText");
-    }
-
     public String getAttribute(WebElement webElement, String attribute) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.getAttribute(attribute);
     }
 
     public String getAttribute(By selector, String attribute) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
         return driver.findElement(selector).getAttribute(attribute);
     }
 
@@ -79,4 +74,5 @@ public class WebDriverAction {
         }
         return true;
     }
+
 }
