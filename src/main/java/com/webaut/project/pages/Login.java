@@ -18,11 +18,10 @@ public class Login extends AbstractPage {
         driver.get("https://trello.com/login");
     }
 
-    public Header loginTrello(String userName, String password){
+    public Header loginTrello(String userName, String password) {
         action.setValue(userNameTextField, userName);
         action.setValue(userPasswordTextField, password);
         action.click(logginButton);
         return new Header();
-
     }
 }

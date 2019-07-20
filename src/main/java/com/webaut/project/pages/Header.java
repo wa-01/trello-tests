@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Header extends AbstractPage{
+public class Header extends AbstractPage {
 
     private static final String MEMBER_BUTTON = "button[title*=\"%s\"]";
 
@@ -18,13 +18,12 @@ public class Header extends AbstractPage{
         return action.isElementVisible(By.cssSelector(String.format(MEMBER_BUTTON, userName)));
     }
 
-    public MemberPopoverMenu clickMemberButton(){
+    public MemberPopoverMenu clickMemberButton() {
         action.click(memberButton);
         return new MemberPopoverMenu();
-
     }
 
-    public HomePage clickHomeButton(){
+    public HomePage clickHomeButton() {
         action.click(homeButton);
         return new HomePage();
     }
