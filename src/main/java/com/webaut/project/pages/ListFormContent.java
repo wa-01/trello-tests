@@ -1,7 +1,6 @@
 package com.webaut.project.pages;
 
 import org.openqa.selenium.By;
-//import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -13,7 +12,6 @@ public class ListFormContent extends AbstractPage{
     @FindBy (css = "textarea:focus")
     private WebElement listHeaderEditable;
 
-    //@FindBy (css = ".list-header-extras-menu")
     private String listActionsButton = "//h2[text()='%s']/following-sibling::div";
 
     private String listTitleLabel = ".list-header-name-assist";
@@ -33,7 +31,7 @@ public class ListFormContent extends AbstractPage{
 
     public void setListTitle(String newTitle){
         action.setValue(listHeaderEditable, newTitle);
-        action.click(addListButton);//setValue(listHeaderEditable, Keys.ENTER);
+        action.click(addListButton);
     }
 
     public ListActions clickListActionsButton(String listTitle){
