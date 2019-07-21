@@ -51,19 +51,36 @@ public class ListSteps {
         Assert.assertEquals(newTitle, actualTitle);
     }
 
-    @When("I click the list actions button")
-    public void iClickTheListActionsButton() {
-        listActions = listContent.clickListActionsButton();
+    @When("I click the actions button in the list {string}")
+    public void iClickTheActionsButtonInTheList(String listTitle) {
+        listActions = listContent.clickListActionsButton(listTitle);
     }
 
-    @And("I select Archive This List")
-    public void iSelectArchiveThisList() {
-        listActions.selectArchiveThisList();
+    @And("I select the action list {string}")
+    public void iSelectTheActionList(String listAction) {
+        //listActions.selectArchiveThisList();
+        listActions.selectAction(listAction);
     }
 
     @Then("I validate the list named {string} is archived")
     public void iValidateTheListNamedIsArchived(String arg0) {
         boolean actualResult = board.isListElementVisible();
         Assert.assertFalse(actualResult);
+    }
+
+    @When("I move {string} to {string} position")
+    public void iMoveToPosition(String listSource, String listTarget) {
+        listContent.moveList(listSource, listTarget);
+    }
+
+    @Then("I validate {string} is before {string}")
+    public void iValidateIsBefore(String beforeList, String afterList) {
+        Assert.assertTrue(listContent.isListAfter(beforeList, afterList));
+    }
+
+    @And("I select the position {string}")
+    public void iSelectThePosition(String newPosition) {
+        MoveList moveList = new MoveList();
+        moveList.selectPosition(newPosition);
     }
 }

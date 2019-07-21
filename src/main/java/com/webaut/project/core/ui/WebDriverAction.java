@@ -4,8 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class WebDriverAction {
     private WebDriver driver;
@@ -17,6 +19,7 @@ public class WebDriverAction {
     }
 
     public void click(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
     }
@@ -27,7 +30,8 @@ public class WebDriverAction {
     }
 
     public void setValue(By selector, String value) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
         driver.findElement(selector).sendKeys(value);
     }
 
@@ -73,6 +77,19 @@ public class WebDriverAction {
             return false;
         }
         return true;
+    }
+
+    public void moveElement(By source, By target){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(source));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(target));
+        WebElement destination = driver.findElement(target);
+        Actions action = new Actions(driver);
+        action.clickAndHold(driver.findElement(source)).build().perform();
+        action.moveByOffset(-1,-1).build().perform();
+        action.moveToElement(destination, destination.getLocation().getX() + destination.getSize().getWidth()/2,
+                destination.getLocation().getY() + destination.getSize().getHeight()/2).build().perform();
+        action.release().perform();//.moveByOffset(-1,-1)
+        //action.dragAndDrop(driver.findElement(source), driver.findElement(target)).build().perform();
     }
 
 }
