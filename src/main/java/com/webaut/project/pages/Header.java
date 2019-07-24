@@ -14,6 +14,12 @@ public class Header extends AbstractPage {
     @FindBy(css = "span[name = 'house']")
     private WebElement homeButton;
 
+    @FindBy(css = "button[data-test-id='header-create-menu-button']")
+    private WebElement createMenuButton;
+
+    @FindBy(css = "button[data-test-id='header-create-board-button']")
+    private WebElement createBoardButton;
+
     public Boolean userNameIsOnButton(String userName) {
         return action.isElementVisible(By.cssSelector(String.format(MEMBER_BUTTON, userName)));
     }
@@ -28,4 +34,9 @@ public class Header extends AbstractPage {
         return new HomePage();
     }
 
+    public BoardForm clickCreateBoardButton() {
+        action.click(createMenuButton);
+        action.click(createBoardButton);
+        return new BoardForm();
+    }
 }
