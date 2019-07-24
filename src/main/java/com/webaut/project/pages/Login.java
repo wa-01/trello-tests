@@ -23,6 +23,5 @@ public class Login extends AbstractPage {
         action.setValue(userPasswordTextField, password);
         action.click(logginButton);
         return new Header();
-
     }
 }

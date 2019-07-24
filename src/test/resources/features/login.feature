@@ -1,4 +1,5 @@
 Feature: login
   Scenario: login and start a session
 
-    Given I login as "luiscachi" user with password "Control123"
+    Given I login as "" user with password ""
+    Then I verify the user "" is in member button
