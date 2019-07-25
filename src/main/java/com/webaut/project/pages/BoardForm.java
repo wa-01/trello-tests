@@ -38,22 +38,15 @@ public class BoardForm extends AbstractPage{
     }
 
     private void setBoardFields(Map<String, String> data) {
-        action.setValue(inputBoardTitle, data.get("title"));
-        selectTeam(data.get("team"));
-        selectPrivacy(data.get("privacy"));
-        selectBackgroundAvailableImage(data.get("image"));
-        /*
         Map<String, ISteps> strategyMap = new HashMap<>();
-        strategyMap.put("title", () -> action.setValue(inputBoardTitle, data.get("boardTitle")));
+        strategyMap.put("title", () -> action.setValue(inputBoardTitle, data.get("title")));
         strategyMap.put("team", () -> selectTeam(data.get("team")));
         strategyMap.put("privacy", () -> selectPrivacy(data.get("privacy")));
         strategyMap.put("image", () -> selectBackgroundAvailableImage(data.get("image")));
-*/
-        /*
         Set<String> keys = data.keySet();
         for (String key : keys) {
             strategyMap.get(key).execute();
-        }*/
+        }
     }
 
     private void selectBackgroundAvailableImage(String image) {
@@ -73,3 +66,4 @@ public class BoardForm extends AbstractPage{
         action.click(By.xpath(optionTeamLocator));
     }
 }
+
