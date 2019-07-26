@@ -8,16 +8,16 @@ public class Header extends AbstractPage {
 
     private static final String MEMBER_BUTTON = "button[title*=\"%s\"]";
 
-    @FindBy(css = "button[data-test-id = 'header-member-menu-button']")
+    @FindBy(css = "button[data-steps-id = 'header-member-menu-button']")
     private WebElement memberButton;
 
     @FindBy(css = "span[name = 'house']")
     private WebElement homeButton;
 
-    @FindBy(css = "button[data-test-id='header-create-menu-button']")
+    @FindBy(css = "button[data-steps-id='header-create-menu-button']")
     private WebElement createMenuButton;
 
-    @FindBy(css = "button[data-test-id='header-create-board-button']")
+    @FindBy(css = "button[data-steps-id='header-create-board-button']")
     private WebElement createBoardButton;
 
     public Boolean userNameIsOnButton(String userName) {

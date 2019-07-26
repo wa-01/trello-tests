@@ -17,7 +17,7 @@ public class BoardForm extends AbstractPage{
     @FindBy(css = "#layer-manager-overlay")
     private WebElement boardForm;
 
-    @FindBy(css = "input[data-test-id=\"header-create-board-title-input\"]")
+    @FindBy(css = "input[data-steps-id=\"header-create-board-title-input\"]")
     private WebElement inputBoardTitle;
 
     //@FindBy(xpath = "//div[@id='layer-manager-overlay']/descendant::div/button/span[text()='No team']/following-sibling::span")
@@ -27,7 +27,7 @@ public class BoardForm extends AbstractPage{
     @FindBy(xpath = "(//button/span[@name=\"down\"])[2]")
     private WebElement privacySelector;
 
-    @FindBy(css = "button[data-test-id=\"header-create-board-submit-button\"]")
+    @FindBy(css = "button[data-steps-id=\"header-create-board-submit-button\"]")
     private WebElement createBoardButton;
 
     public BoardDetails createBoard(Map<String, String> data) {

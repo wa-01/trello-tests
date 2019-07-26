@@ -1,5 +1,5 @@
-Feature: login
-  Scenario: login and start a session
+Feature: Login
 
-    Given I login as "" user with password ""
-    Then I verify the user "" is in member button
+  Scenario: Login and start a session
+
+    Given I login as "owner"
