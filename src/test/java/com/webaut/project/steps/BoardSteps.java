@@ -1,4 +1,4 @@
-package com.webaut.project.test;
+package com.webaut.project.steps;
 
 import com.webaut.project.pages.BoardDetails;
 import com.webaut.project.pages.BoardForm;
