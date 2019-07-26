@@ -1,43 +1,38 @@
 package com.webaut.project;
 
 import com.webaut.project.pages.AddCard;
+import com.webaut.project.pages.EditCard;
 import com.webaut.project.pages.Login;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class AddCardTest {
-
+public class EditCardTest {
     @Before
     public void setUp() {
         String userName = "lizzytest";
         String password = "l122y4m4b3l";
         Login login = new Login();
         login.loginTrello(userName, password);
-    }
-
-    @Test
-    public void testAddCard() {
-        // Given
-        // When
-        // Then
 
         AddCard addCard = new AddCard();
         String listName = "List 1";
         String title = "This is a test";
         String boardName = "testboard";
         addCard.addTitleCard(listName, title, boardName);
-        Boolean actual = addCard.isCardVisible(title);
-        assertTrue(actual);
     }
 
-    // //span[contains(text(),'This is a test')]/ancestor::span[contains(@class, 'icon-edit list-card-operation')]
+    @Test
+    public void testEditCard() {
+        // Given
+        // When
+        // Then
 
-    @After
-    public void tearDown() {
-        System.out.println("tearDown");
+        EditCard editCard = new EditCard();
+        String title = "This is a test";
+        String description = "This is a description";
+        String comment = "This is a comment";
+        editCard.editCard(title, description, comment);
     }
 }
