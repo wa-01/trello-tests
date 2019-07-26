@@ -14,10 +14,10 @@ public class EditCard extends AbstractPage{
     /* @FindBy(css = "a[class *='description-fake-text-area']")
     private WebElement descriptionLink; */
 
-    @FindBy(css = "a[class *='js-show-with-desc']")
+    @FindBy(css = ".js-show-with-desc")
     private WebElement descriptionLink;
 
-    @FindBy(css = "textarea[class *='description card-description']")
+    @FindBy(css = ".js-description-draft")
     private WebElement descriptionField;
 
     @FindBy(css ="textarea[class *='comment-box-input js-new']")
@@ -28,7 +28,7 @@ public class EditCard extends AbstractPage{
 
     public void editCard(String title, String description, String comment) {
         action.click(By.xpath(String.format(EDIT_CARD_LINK, title)));
-        action.click(descriptionLink);
+        action.clickJS(descriptionLink);
         action.setValue(descriptionField, description);
         action.click(By.xpath(SAVE_DESCRIPTION));
 
