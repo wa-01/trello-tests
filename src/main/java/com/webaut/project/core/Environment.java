@@ -13,6 +13,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * Singleton Class of environment.
+ */
 public final class Environment {
 
     private static final String CONF_FILE = "environment.json";
