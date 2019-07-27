@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WebDriverAction {
+
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -21,9 +22,9 @@ public class WebDriverAction {
         driver.findElement(locator).click();
     }
 
-    public void click(WebElement webElement) {
-        wait.until(ExpectedConditions.elementToBeClickable(webElement));
-        webElement.click();
+    public void click(WebElement locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+        locator.click();
     }
 
     public void setValue(By selector, String value) {
@@ -69,4 +70,5 @@ public class WebDriverAction {
         }
         return true;
     }
+
 }
