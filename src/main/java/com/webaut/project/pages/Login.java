@@ -14,6 +14,9 @@ public class Login extends AbstractPage {
     @FindBy(css = ".button.button-green")
     private WebElement logginButton;
 
+    @FindBy(css = "#error > .error-message")
+    private WebElement errorMessage;
+
     public Login() {
         driver.get("https://trello.com/login");
     }
@@ -23,5 +26,13 @@ public class Login extends AbstractPage {
         action.setValue(userPasswordTextField, password);
         action.click(logginButton);
         return new Header();
+    }
+
+    public String verifyInvalidPasswordMessageIsDisplayed() {
+        return action.getText(errorMessage);
+    }
+
+    public boolean UrlIsLoginPAge() {
+        return driver.getCurrentUrl().endsWith("login");
     }
 }
