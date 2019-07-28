@@ -13,7 +13,7 @@ public class AbstractPage {
 
     public AbstractPage() {
         driver = DriverManager.getInstance().getDriver();
-        wait = DriverManager.getInstance().getWait();
+        wait = new WebDriverWait(driver, 30);
         action = new WebDriverAction(driver, wait);
 
         PageFactory.initElements(driver,this);
