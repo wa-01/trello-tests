@@ -1,6 +1,7 @@
 package com.webaut.project.core.ui;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -34,6 +35,11 @@ public class WebDriverAction {
     public void setValue(WebElement webElement, String value) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(value);
+    }
+
+    public void clickJS(WebElement webElement) {
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", webElement);
     }
 
     public String getText(WebElement webElement) {
