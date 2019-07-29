@@ -57,4 +57,15 @@ public class CardSteps {
         boolean actual = this.cardForm.isCardVisible(title);
         assertFalse(actual);
     }
+
+    @And("I choose {string} and {string} labels")
+    public void iChooseAndLabels(String color1, String color2) {
+        this.cardForm.addLabels(color1, color2);
+    }
+
+    @Then("I should be able to see the labels in the card into the list")
+    public void iShouldBeAbleToSeeTheLabelsInTheCardIntoTheList() {
+        boolean actual = this.cardForm.isLabelsVisible();
+        assertTrue(actual);
+    }
 }

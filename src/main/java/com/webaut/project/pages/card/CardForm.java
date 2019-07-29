@@ -16,6 +16,8 @@ public class CardForm extends AbstractPage {
     private static final String SAVE_DESCRIPTION = "//input[@value='Save']/ancestor::div[contains(@class,'window-module')]/descendant::h3[text()='Description']";
     private static final String SAVE_COMMENT = "//div[contains(@class,'comment-controls')]/child::input";
     private static final String BADGES = "//span[contains(text(),'%s')]/following-sibling::div[@class='badges']";
+    private static final String CARD_LABEL = "span[class*='mod-selectable card-label-%s']";
+    private static final String LABELS = "//a[contains(@href,'%s')]/child::div[contains(@class,'js-card-cover')]";
 
     @FindBy(css = "textarea[class='list-card-composer-textarea js-card-title']")
     private WebElement cardTextField;
@@ -47,13 +49,22 @@ public class CardForm extends AbstractPage {
     @FindBy(css = "input[class*='js-confirm']")
     private WebElement confirmDelete;
 
+    @FindBy(css = "a[class*='js-edit-labels']")
+    private WebElement labelsButton;
+
+    @FindBy(css = "span[class*='mod-selectable card-label-green']")
+    private WebElement cardLabelGreen;
+
+    @FindBy(css = "a[class*='pop-over-header-close-btn']")
+    private WebElement closeCardLabels;
+
     public void addCard(String listName, String boardName) {
         action.click(By.cssSelector((String.format(BOARD_BUTTON, boardName))));
         action.click(By.xpath(String.format(ADD_CARD_LINK, listName)));
     }
 
     public void writeTitle(String title) {
-        this.titleCard = title;
+        this.titleCard = title.toLowerCase();
         action.setValue(cardTextField, title);
         action.click(saveCardButton);
         action.click(board);
@@ -64,6 +75,7 @@ public class CardForm extends AbstractPage {
     }
 
     public void openCardToEdit(String title) {
+        this.titleCard = title;
         action.click(By.xpath(String.format(EDIT_CARD_LINK, title)));
     }
 
@@ -84,5 +96,22 @@ public class CardForm extends AbstractPage {
         action.click(archiveButton);
         action.click(deleteButton);
         action.click(confirmDelete);
+    }
+
+    public void addLabels(String color1, String color2) {
+        action.click(labelsButton);
+        action.click(By.cssSelector(String.format(CARD_LABEL, color1)));
+        action.click(By.cssSelector(String.format(CARD_LABEL, color2)));
+        action.click(closeCardLabels);
+        action.click(close);
+    }
+
+    public boolean isLabelsVisible() {
+        String title = getDashSeparated(this.titleCard);
+        return action.isElementVisible(By.xpath(String.format(LABELS, title)));
+    }
+
+    public String getDashSeparated(String text) {
+        return text.replaceAll("\\s", "-");
     }
 }
