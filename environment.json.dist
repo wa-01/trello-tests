@@ -4,7 +4,19 @@
       "username" : "",
       "password" : ""
     },
-    "member" : {
+    "empty_credential" : {
+      "username" : "",
+      "password" : ""
+    },
+    "invalid_pw" : {
+      "username" : "",
+      "password" : ""
+    },
+    "no_password" : {
+      "username" : "",
+      "password" : ""
+    },
+    "no_email" : {
       "username" : "",
       "password" : ""
     }
