@@ -24,7 +24,9 @@ public class TeamSteps {
     private TeamSideBarOption teamSideBarOption;
     private TeamDeleteConfirmation teamDeleteConfirmation;
 
-    public TeamSteps (Home home, TeamForm teamForm, TeamDetails teamDetails, Header header, HeaderCreateMenu headerCreateMenuHeader, TeamSideBarOption teamSideBarOption, TeamDeleteConfirmation teamDeleteConfirmation){
+    public TeamSteps (Home home, TeamForm teamForm, TeamDetails teamDetails, Header header,
+                      HeaderCreateMenu headerCreateMenuHeader, TeamSideBarOption teamSideBarOption,
+                      TeamDeleteConfirmation teamDeleteConfirmation){
         this.home = home;
         this.teamForm = teamForm;
         this.teamDetails = teamDetails;
