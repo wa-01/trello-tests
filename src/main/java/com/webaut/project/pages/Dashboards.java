@@ -14,9 +14,6 @@ public class Dashboards extends AbstractPage {
         action.click(buttonCreateTeam);
     }
 
-    //@FindBy(xpath = "//span[@data-test-id='home-team-tab-name' and text () = '%s']")
-    //private WebElement teamListed;
-
     public Boolean teamIsListedOnSideBar(String teamName){
         return action.isElementVisible(By.xpath(String.format("//span[@data-test-id='home-team-tab-name' and text () = '%s']", teamName)));
     }

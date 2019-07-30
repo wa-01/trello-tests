@@ -20,6 +20,9 @@ public class Header extends AbstractPage {
     @FindBy(css = "button[data-steps-id='header-create-board-button']")
     private WebElement createBoardButton;
 
+    @FindBy(css = "span[name= 'add']")
+    private WebElement addButton;
+
     public Boolean userNameIsOnButton(String userName) {
         return action.isElementVisible(By.cssSelector(String.format(MEMBER_BUTTON, userName)));
     }
@@ -38,5 +41,9 @@ public class Header extends AbstractPage {
         action.click(createMenuButton);
         action.click(createBoardButton);
         return new BoardForm();
+    }
+
+    public void clickAdd(){
+        addButton.click();
     }
 }
