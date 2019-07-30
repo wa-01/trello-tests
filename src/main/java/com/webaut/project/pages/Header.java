@@ -32,9 +32,9 @@ public class Header extends AbstractPage {
         return new MemberPopoverMenu();
     }
 
-    public HomePage clickHomeButton() {
+    public Home clickHomeButton() {
         action.click(homeButton);
-        return new HomePage();
+        return new Home();
     }
 
     public BoardForm clickCreateBoardButton() {

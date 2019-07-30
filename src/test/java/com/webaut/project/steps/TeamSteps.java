@@ -1,7 +1,7 @@
 package com.webaut.project.steps;
 
 import com.webaut.project.pages.HeaderCreateMenu;
-import com.webaut.project.pages.Dashboards;
+import com.webaut.project.pages.Home;
 import com.webaut.project.pages.Header;
 import com.webaut.project.pages.team.TeamDetails;
 import com.webaut.project.pages.team.TeamForm;
@@ -12,14 +12,14 @@ import cucumber.api.java.en.When;
 import org.testng.Assert;
 
 public class TeamSteps {
-    private Dashboards dashboards;
+    private Home home;
     private TeamForm teamForm;
     private TeamDetails teamDetails;
     private Header header;
     private HeaderCreateMenu headerCreateMenuHeader;
 
-    public TeamSteps (Dashboards dashboards, TeamForm teamForm, TeamDetails teamDetails, Header header, HeaderCreateMenu headerCreateMenuHeader){
-        this.dashboards = dashboards;
+    public TeamSteps (Home home, TeamForm teamForm, TeamDetails teamDetails, Header header, HeaderCreateMenu headerCreateMenuHeader){
+        this.home = home;
         this.teamForm = teamForm;
         this.teamDetails = teamDetails;
         this.header =header;
@@ -28,7 +28,7 @@ public class TeamSteps {
     }
     @Given("I Create a {string} Team with {string} from Dashboards")
     public void iCreateTeamFromDashboards(String teamName, String teamDescription) {
-        dashboards.clickCreateTeam();
+        home.clickCreateTeam();
         teamForm.setTeamName(teamName);
         teamForm.setTeamDescription(teamDescription);
         teamForm.clickCreate();
@@ -42,7 +42,7 @@ public class TeamSteps {
     @And("I validate that {string} Team is listed in TEAMS section of sidebar")
     public void iValidateTeamIsListedInSidebar(String teamName){
         header.clickHomeButton();
-        Assert.assertTrue(dashboards.teamIsListedOnSideBar(teamName));
+        Assert.assertTrue(home.teamIsListedOnSideBar(teamName));
     }
 
     @When("I Create a {string} Team with {string} from Header")
