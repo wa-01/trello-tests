@@ -1,6 +1,6 @@
 package com.webaut.project.steps;
 
-import com.webaut.project.pages.Create;
+import com.webaut.project.pages.HeaderCreateMenu;
 import com.webaut.project.pages.Dashboards;
 import com.webaut.project.pages.Header;
 import com.webaut.project.pages.team.TeamDetails;
@@ -16,14 +16,14 @@ public class TeamSteps {
     private TeamForm teamForm;
     private TeamDetails teamDetails;
     private Header header;
-    private Create createHeader;
+    private HeaderCreateMenu headerCreateMenuHeader;
 
-    public TeamSteps (Dashboards dashboards, TeamForm teamForm, TeamDetails teamDetails, Header header, Create createHeader){
+    public TeamSteps (Dashboards dashboards, TeamForm teamForm, TeamDetails teamDetails, Header header, HeaderCreateMenu headerCreateMenuHeader){
         this.dashboards = dashboards;
         this.teamForm = teamForm;
         this.teamDetails = teamDetails;
         this.header =header;
-        this.createHeader = createHeader;
+        this.headerCreateMenuHeader = headerCreateMenuHeader;
 
     }
     @Given("I Create a {string} Team with {string} from Dashboards")
@@ -48,7 +48,7 @@ public class TeamSteps {
     @When("I Create a {string} Team with {string} from Header")
     public void iCreateTeamFromHeader(String teamName, String teamDescription){
         header.clickAdd();
-        createHeader.clickLinkCreateTeam();
+        headerCreateMenuHeader.clickLinkCreateTeam();
         teamForm.setHeaderInputName(teamName);
         teamForm.setHeaderTeamDescription(teamDescription);
         teamForm.clickHeaderCreateTeam();
