@@ -57,5 +57,4 @@ public class TeamForm extends AbstractPage {
     private WebElement headerCreateTeamButton;
 
     public void clickHeaderCreateTeam(){headerCreateTeamButton.click();}
-
 }
