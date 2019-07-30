@@ -39,4 +39,23 @@ public class TeamForm extends AbstractPage {
     public void clickCreate(){
         clickCreate.click();
     }
+
+    @FindBy(css = "input[data-test-id='header-create-team-name-input']")
+    private WebElement headerInputName;
+
+    public void setHeaderInputName (String teamName){
+        headerInputName.sendKeys(teamName);
+    }
+
+    @FindBy(css = "textarea[name='desc']")
+    private WebElement headerInputDescription;
+
+    public void setHeaderTeamDescription(String teamDescription){
+        headerInputDescription.sendKeys(teamDescription);
+    }
+    @FindBy(css = "button[data-test-id='header-create-team-submit-button']")
+    private WebElement headerCreateTeamButton;
+
+    public void clickHeaderCreateTeam(){headerCreateTeamButton.click();}
+
 }
