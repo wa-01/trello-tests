@@ -5,18 +5,16 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Home extends AbstractPage {
-    //TEAMS Section of Side bar
-    //-------------------------------------------------------------------------
+
     @FindBy(css = "button[data-test-id='home-navigation-create-team-button']")
     private WebElement buttonCreateTeam;
 
     public void clickCreateTeam() {
-        action.click(buttonCreateTeam);
+        action.click(By.xpath("//button[@data-test-id=\"home-navigation-create-team-button\"]/span"));
     }
 
     public Boolean teamIsListedOnSideBar(String teamName){
         return action.isElementVisible(By.xpath(String.format("//span[@data-test-id='home-team-tab-name' and text () = '%s']", teamName)));
     }
 
-    //-------------------------------------------------------------------------
 }
