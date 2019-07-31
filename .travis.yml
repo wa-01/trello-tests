@@ -14,6 +14,7 @@ before_install:
   -in environment.json.enc -out environment.json -d
 - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost
   &
+- chmod +x gradlew
 script:
 - gradle clean executeFeatures
 notifications:

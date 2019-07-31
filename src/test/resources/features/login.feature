@@ -3,7 +3,6 @@ Feature: Login
   Scenario: Verify the user is logged successfully
     Given I login as "owner"
     Then I verify the user "owner" is in member button
-    
 
   Scenario: Verify an invalid user is not logged
     Given I login as "no_password"

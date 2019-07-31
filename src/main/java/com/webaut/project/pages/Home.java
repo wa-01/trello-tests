@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Home extends AbstractPage {
-
     //TEAMS Section of Side bar
     //-------------------------------------------------------------------------
     protected static final String TEAM_NAME_ON_DASHBOARDS = "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
@@ -17,7 +16,7 @@ public class Home extends AbstractPage {
     private WebElement teamListed;
 
     public void clickCreateTeam() {
-        action.click(buttonCreateTeam);
+        action.click(By.xpath("//button[@data-test-id=\"home-navigation-create-team-button\"]/span"));
     }
 
     public boolean teamIsListedOnSideBar(String teamName){
