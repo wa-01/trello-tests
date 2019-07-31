@@ -6,25 +6,25 @@ import org.openqa.selenium.support.FindBy;
 
 public class Header extends AbstractPage {
 
-    private static final String MEMBER_BUTTON = "button[title*=\"%s\"]";
+    private static final String MEMBER_BUTTON = "//button[contains(@title,\"%s\")]";
 
     @FindBy(css = "button[data-steps-id = 'header-member-menu-button']")
     private WebElement memberButton;
 
-    @FindBy(css = "span[name = 'house']")
+    @FindBy(css = "span[name=\"house\"]")
     private WebElement homeButton;
 
-    @FindBy(css = "button[data-steps-id='header-create-menu-button']")
+    @FindBy(css = "button[data-test-id=\"header-create-menu-button\"]")
     private WebElement createMenuButton;
 
-    @FindBy(css = "button[data-steps-id='header-create-board-button']")
+    @FindBy(css = "button[data-test-id=\"header-create-board-button\"]")
     private WebElement createBoardButton;
 
     @FindBy(css = "span[name= 'add']")
     private WebElement addButton;
 
     public Boolean userNameIsOnButton(String userName) {
-        return action.isElementVisible(By.cssSelector(String.format(MEMBER_BUTTON, userName)));
+        return action.isElementVisible(By.xpath(String.format(MEMBER_BUTTON, userName)));
     }
 
     public MemberPopoverMenu clickMemberButton() {
@@ -33,6 +33,7 @@ public class Header extends AbstractPage {
     }
 
     public Home clickHomeButton() {
+        action.click(homeButton);
         action.click(homeButton);
         return new Home();
     }
