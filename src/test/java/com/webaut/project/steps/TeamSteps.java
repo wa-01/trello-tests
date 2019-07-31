@@ -67,12 +67,13 @@ public class TeamSteps {
 
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
+        sleep(1500);  
         home.clickListedTeam(teamName);
-        sleep(1000);
+        sleep(1500);
         teamSideBarOption.clickSettings();
-        sleep(1000);
+        sleep(1500);
         teamSideBarOption.clickDeleteLink();
-        sleep(1000);
+        sleep(1500);
         teamDeleteConfirmation.clickDeleteForever();
     }
     @Then("I Validate {string} Team is not listed in Side bar")

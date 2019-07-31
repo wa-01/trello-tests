@@ -14,9 +14,6 @@ public class Home extends AbstractPage {
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
             "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
 
-    @FindBy(xpath = TEAM_NAME_ON_DASHBOARDS)
-    private WebElement teamListed;
-
     public void clickCreateTeam() {
         action.click(By.cssSelector(CREATE_TEAM_BUTTON_DASHBOARDS));
     }
