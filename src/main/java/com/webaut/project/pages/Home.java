@@ -5,9 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class Home extends AbstractPage {
-    //TEAMS Section of Side bar
-    //-------------------------------------------------------------------------
-    protected static final String TEAM_NAME_ON_DASHBOARDS = "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
 
     //TEAMS Section of Side bar
     //-------------------------------------------------------------------------
@@ -16,9 +13,6 @@ public class Home extends AbstractPage {
 
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
             "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
-
-    @FindBy(xpath = TEAM_NAME_ON_DASHBOARDS)
-    private WebElement teamListed;
 
     @FindBy(xpath = TEAM_NAME_ON_DASHBOARDS)
     private WebElement teamListed;
