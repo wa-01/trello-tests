@@ -24,5 +24,10 @@ public class BoardSteps {
         BoardForm boardForm = new BoardForm();
         boardDetails=boardForm.createBoard(data);
     }
+
+    @And("I crated an a list into the board with {string} name")
+    public void iCratedAnAListIntoTheBoardWithName(String listName) {
+        boardForm.addList(listName);
+    }
 }
 
