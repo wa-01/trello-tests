@@ -47,4 +47,8 @@ public class Header extends AbstractPage {
     public void clickAdd(){
         addButton.click();
     }
+
+    public void goToHomeFromTeam() {
+        driver.get("https://trello.com/");
+    }
 }

@@ -23,21 +23,21 @@ public class TeamForm extends AbstractPage {
     private WebElement teamInputName;
 
     public void setTeamName(String teamName){
-        teamInputName.sendKeys(teamName);
+        action.setValue(teamInputName,teamName);
     }
 
     @FindBy(css = "#org-desc")
     private WebElement teamInputDescription;
 
     public void setTeamDescription(String description){
-        teamInputDescription.sendKeys(description);
+        action.setValue(teamInputDescription,description);
     }
 
     @FindBy(css = "input[class = 'primary wide js-save']")
     private WebElement clickCreate;
 
     public void clickCreate(){
-        clickCreate.click();
+        action.click(clickCreate);
     }
 
     @FindBy(css = "input[data-test-id='header-create-team-name-input']")

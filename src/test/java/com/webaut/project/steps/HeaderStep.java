@@ -29,5 +29,10 @@ public class HeaderStep {
     public void iClickInMemberButton() {
         header.clickMemberButton();
     }
+
+    @And("I go to home from team page")
+    public void iGoToHomeFromTeamPage() {
+        header.goToHomeFromTeam();
+    }
 }
 
