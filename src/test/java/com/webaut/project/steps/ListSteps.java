@@ -1,5 +1,6 @@
 package com.webaut.project.steps;
 
+import com.webaut.project.pages.BoardDetails;
 import com.webaut.project.pages.Home;
 import com.webaut.project.pages.list.ListActions;
 import com.webaut.project.pages.list.ListForm;
@@ -13,9 +14,19 @@ import org.junit.Assert;
 import java.util.Map;
 
 public class ListSteps {
-    private Board board = new Board();
-    private ListFormContent listContent = new ListFormContent();
+    private BoardDetails boardDetails;
+    private ListFormContent listContent;
     private ListActions listActions;
+    private ListForm listForm;
+    private MoveList moveList;
+
+    public ListSteps(BoardDetails boardDetails, ListFormContent listContent, ListActions listActions, ListForm listForm, MoveList moveList){
+        this.boardDetails = boardDetails;
+        this.listContent = listContent;
+        this.listActions = listActions;
+        this.listForm = listForm;
+        this.moveList = moveList;
+    }
 
     @And("a board is created")
     public void aBoardIsCreated() {
@@ -25,12 +36,11 @@ public class ListSteps {
 
     @When("I click add a list button")
     public void iClickAddAListButton() {
-        ListForm listForm = board.clickAddListButton();
+        listForm = boardDetails.clickAddListButton();
     }
 
     @And("I set the list title")
     public void iSetTheListTitle(Map<String, String> data) {
-        ListForm listForm = new ListForm();
         listForm.addList(data);
     }
 
@@ -68,8 +78,8 @@ public class ListSteps {
     }
 
     @Then("I validate the list named {string} is archived")
-    public void iValidateTheListNamedIsArchived(String arg0) {
-        boolean actualResult = board.isListElementVisible();
+    public void iValidateTheListNamedIsArchived(String listName) {
+        boolean actualResult = boardDetails.isListVisible(listName);
         Assert.assertFalse(actualResult);
     }
 
@@ -85,7 +95,6 @@ public class ListSteps {
 
     @And("I select the position {string}")
     public void iSelectThePosition(String newPosition) {
-        MoveList moveList = new MoveList();
         moveList.selectPosition(newPosition);
     }
 }
