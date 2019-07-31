@@ -10,8 +10,8 @@ public class TeamSideBarOption extends AbstractPage {
     @FindBy(xpath = "//span[text() = 'Settings']")
     private WebElement teamSettings;
 
-    @FindBy(xpath = "//span[text() = 'Cards']")
-    private WebElement teamCards;
+    @FindBy(xpath = "//span[text() = 'Highlights']")
+    private WebElement teamHighlights;
 
     @FindBy(css = ".u-inline")
     private WebElement teamNameAsTitle;
@@ -20,7 +20,7 @@ public class TeamSideBarOption extends AbstractPage {
     private WebElement deleteTeamLink;
 
     public void clickSettings(){
-        wait.until(ExpectedConditions.visibilityOf(teamCards));
+        wait.until(ExpectedConditions.visibilityOf(teamHighlights));
         action.click(teamSettings);
     }
 
