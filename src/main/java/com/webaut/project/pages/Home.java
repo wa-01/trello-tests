@@ -8,16 +8,17 @@ public class Home extends AbstractPage {
 
     //TEAMS Section of Side bar
     //-------------------------------------------------------------------------
-    protected static final String TEAM_NAME_ON_DASHBOARDS = "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
+    protected static final String TEAM_NAME_ON_DASHBOARDS =
+            "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
 
-    @FindBy(css = "button[data-test-id='home-navigation-create-team-button']")
-    private WebElement buttonCreateTeam;
+    protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
+            "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
 
     @FindBy(xpath = TEAM_NAME_ON_DASHBOARDS)
     private WebElement teamListed;
 
     public void clickCreateTeam() {
-        action.click(buttonCreateTeam);
+        action.click(By.cssSelector(CREATE_TEAM_BUTTON_DASHBOARDS));
     }
 
     public boolean teamIsListedOnSideBar(String teamName){

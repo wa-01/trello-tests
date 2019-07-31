@@ -37,7 +37,8 @@ public class TeamSteps {
 
     }
     @Given("I Create a {string} Team with {string} from Dashboards")
-    public void iCreateTeamFromDashboards(String teamName, String teamDescription) {
+    public void iCreateTeamFromDashboards(String teamName, String teamDescription) throws InterruptedException {
+        sleep(1000);
         home.clickCreateTeam();
         teamForm.setTeamName(teamName);
         teamForm.setTeamDescription(teamDescription);
@@ -67,11 +68,11 @@ public class TeamSteps {
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
         home.clickListedTeam(teamName);
-        sleep(500);
+        sleep(1000);
         teamSideBarOption.clickSettings();
-        sleep(500);
+        sleep(1000);
         teamSideBarOption.clickDeleteLink();
-        sleep(500);
+        sleep(1000);
         teamDeleteConfirmation.clickDeleteForever();
     }
     @Then("I Validate {string} Team is not listed in Side bar")

@@ -28,7 +28,7 @@ public class CardForm extends AbstractPage {
     @FindBy(css = "div[id='board']")
     private WebElement board;
 
-    @FindBy(css = ".js-show-with-desc")
+    @FindBy(css = "a[class*='description-fake-text'")
     private WebElement descriptionLink;
 
     @FindBy(css = ".js-description-draft")
