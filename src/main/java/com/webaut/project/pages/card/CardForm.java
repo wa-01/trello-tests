@@ -4,6 +4,8 @@ import com.webaut.project.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
 
 public class CardForm extends AbstractPage {
     private String titleCard;
@@ -58,6 +60,10 @@ public class CardForm extends AbstractPage {
     @FindBy(css = "a[class*='pop-over-header-close-btn']")
     private WebElement closeCardLabels;
 
+    @FindBy(css = "span[class=\"window-header-icon icon-lg icon-card\"]")
+    private WebElement cardIcon;
+
+
     public void addCard(String listName, String boardName) {
         action.click(By.cssSelector((String.format(BOARD_BUTTON, boardName))));
         action.click(By.xpath(String.format(ADD_CARD_LINK, listName)));
@@ -80,6 +86,7 @@ public class CardForm extends AbstractPage {
     }
 
     public void editCard(String description, String comment) {
+        wait.until(ExpectedConditions.visibilityOf(cardIcon));
         action.clickJS(descriptionLink);
         action.setValue(descriptionField, description);
         action.click(By.xpath(SAVE_DESCRIPTION));
