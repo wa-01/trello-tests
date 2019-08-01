@@ -38,7 +38,6 @@ public class TeamSteps {
     }
     @Given("I Create a {string} Team with {string} from Dashboards")
     public void iCreateTeamFromDashboards(String teamName, String teamDescription) throws InterruptedException {
-        sleep(1000);
         home.clickCreateTeam();
         teamForm.setTeamName(teamName);
         teamForm.setTeamDescription(teamDescription);
@@ -51,7 +50,7 @@ public class TeamSteps {
     }
 
     @And("I validate that {string} Team is listed in TEAMS section of sidebar")
-    public void iValidateTeamIsListedInSidebar(String teamName){
+    public void iValidateTeamIsListedInSidebar(String teamName) throws InterruptedException {
         header.clickHomeButton();
         Assert.assertTrue(home.teamIsListedOnSideBar(teamName));
     }
@@ -67,17 +66,13 @@ public class TeamSteps {
 
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
-        sleep(1500);  
         home.clickListedTeam(teamName);
-        sleep(1500);
         teamSideBarOption.clickSettings();
-        sleep(1500);
         teamSideBarOption.clickDeleteLink();
-        sleep(1500);
         teamDeleteConfirmation.clickDeleteForever();
     }
     @Then("I Validate {string} Team is not listed in Side bar")
-    public void iValidateTeamIsRemovedFromSideBar(String teamName){
+    public void iValidateTeamIsRemovedFromSideBar(String teamName) throws InterruptedException {
         Assert.assertFalse(home.teamIsListedOnSideBar(teamName));
     }
 }

@@ -3,6 +3,7 @@ package com.webaut.project.pages.team;
 import com.webaut.project.pages.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TeamForm extends AbstractPage {
 
@@ -23,6 +24,7 @@ public class TeamForm extends AbstractPage {
     private WebElement teamInputName;
 
     public void setTeamName(String teamName){
+        wait.until(ExpectedConditions.visibilityOf(headerTitle));
         action.setValue(teamInputName,teamName);
     }
 
