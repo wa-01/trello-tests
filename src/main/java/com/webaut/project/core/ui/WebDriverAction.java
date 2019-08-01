@@ -34,6 +34,7 @@ public class WebDriverAction {
 
     public void setValue(WebElement webElement, String value) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.clear();
         webElement.sendKeys(value);
     }
 
