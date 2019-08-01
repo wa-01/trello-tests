@@ -20,13 +20,15 @@ public class TeamDetails extends AbstractPage {
     @FindBy(css = "span[class= 'profile-image-icon icon-lg icon-organization']")
     private WebElement img;
 
-    public String getHeaderTitle(){
+    public String getHeaderTitle() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(img));
+        Thread.sleep(600);
         String teamsName = action.getText(teamTitle);
         return (teamsName);
     }
-    public void clickEditTeamProfile(){
+    public void clickEditTeamProfile() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(teamTitle));
+        Thread.sleep(600);
         action.click(editTeamProfile);
     }
 

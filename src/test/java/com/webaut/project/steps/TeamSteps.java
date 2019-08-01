@@ -44,7 +44,7 @@ public class TeamSteps {
     }
 
     @Then("I validate that {string} Team is loaded")
-    public void iValidateTeamIsLoaded(String teamName){
+    public void iValidateTeamIsLoaded(String teamName) throws InterruptedException {
         Assert.assertEquals(teamName, teamDetails.getHeaderTitle());
     }
 
@@ -65,6 +65,7 @@ public class TeamSteps {
 
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
+        Thread.sleep(1000);
         header.clickHomeButton();
         home.clickListedTeam(teamName);
         teamSideBarOption.clickSettings();
@@ -77,18 +78,37 @@ public class TeamSteps {
     }
 
     @When("I edit {string} Team updating {string} as Name and {string} as description")
-    public void iEditNameAndDescriptionOfTeam(String teamName, String newTeamName, String newDescription){
+    public void iEditNameAndDescriptionOfTeam(String teamName, String newTeamName, String newDescription) throws InterruptedException {
         teamDetails.clickEditTeamProfile();
         teamEditForm.updateTeamName(newTeamName);
         teamEditForm.updateTeamDescription(newDescription);
         teamEditForm.clickSave();
     }
     @Then("I validate updated Team name is {string}")
-    public void iValidateUpdateTeamName(String expectedName){
+    public void iValidateUpdateTeamName(String expectedName) throws InterruptedException {
         Assert.assertEquals(teamDetails.getHeaderTitle(),expectedName);
     }
     @Then("I validate updated Team description is {string}")
-    public void iValidateUodateTeamDescription(String newDescription){
+    public void iValidateUpdateTeamDescription(String newDescription){
         Assert.assertEquals(teamDetails.getDescription(),newDescription);
     }
+
+    @When ("I edit {string} Team updating {string} as Name and {string} as description canceled")
+    public void iEditTeamShortNameAndWebsite(String teamName, String shortName, String website) throws InterruptedException {
+       teamDetails.clickEditTeamProfile();
+       teamEditForm.updateTeamShortName(shortName);
+       teamEditForm.updateTeamWebsite(website);
+       teamEditForm.clickCancel();
+    }
+
+    @Then("I validate {string} Team remains {string} as Name and {string} as Description")
+    public void iValidateTeamNameAndDescriptonWereNotUpdated(String Name, String teamName, String teamDescription) throws InterruptedException {
+        Assert.assertEquals(teamDetails.getHeaderTitle(), teamName);
+        Assert.assertEquals(teamDetails.getDescription(), teamDescription);
+        teamDetails.clickEditTeamProfile();
+        Assert.assertEquals(teamEditForm.getDisplayName(), teamName);
+        Assert.assertEquals(teamEditForm.getDescription(), teamDescription);
+        teamEditForm.clickCancel();
+    }
+
 }

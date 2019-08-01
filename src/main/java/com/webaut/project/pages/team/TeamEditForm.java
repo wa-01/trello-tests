@@ -36,7 +36,7 @@ public class TeamEditForm extends AbstractPage {
         return (title);
     }
 
-    public void updateTeamName(String teamNewName){
+    public void updateTeamName(String teamNewName)  {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
         action.setValue(displayName,teamNewName);
     }
@@ -66,8 +66,9 @@ public class TeamEditForm extends AbstractPage {
         action.click(cancelButton);
     }
 
-    public String getDisplayName(){
-        String teamsDisplayName = displayName.getText();
+    public String getDisplayName() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        String teamsDisplayName = displayName.getAttribute("value");
         return (teamsDisplayName);
     }
 
@@ -81,7 +82,9 @@ public class TeamEditForm extends AbstractPage {
         return (teamsWebsite);
     }
 
-    public String getDescription(){
+    public String getDescription() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         String teamsDescription = descriptionTextArea.getText();
         return (teamsDescription);
     }

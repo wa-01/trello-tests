@@ -18,8 +18,6 @@ public class Home extends AbstractPage {
     @FindBy(xpath = "//div[text()='teams']")
     private WebElement teamLabelOnSideBar;
 
-
-    //div[@class='tabbed-pane-header-details-content markeddown']//p[ text()= 'New Description']
     public void clickCreateTeam() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(600);
