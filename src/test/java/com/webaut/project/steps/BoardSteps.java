@@ -1,9 +1,6 @@
 package com.webaut.project.steps;
 
-import com.webaut.project.pages.BoardDetails;
-import com.webaut.project.pages.BoardForm;
-import com.webaut.project.pages.Boards;
-import com.webaut.project.pages.Header;
+import com.webaut.project.pages.*;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,12 +15,14 @@ public class BoardSteps {
     private BoardForm boardForm;
     private String currentBoardID;
     private Boards boards;
+    private Home home;
 
-    public BoardSteps(Header header, BoardDetails boardDetails, BoardForm boardForm, Boards boards) {
+    public BoardSteps(Header header, BoardDetails boardDetails, BoardForm boardForm, Boards boards, Home home) {
         this.header = header;
         this.boardDetails = boardDetails;
         this.boardForm = boardForm;
         this.boards = boards;
+        this.home = home;
     }
 
     @When("I open the board creation form")
@@ -68,6 +67,26 @@ public class BoardSteps {
     public void iValidateThatBoardIsInBoardsPageAtTheTeamList(String arg0, String teamName) {
 
         Assert.assertTrue(boards.isBoardInTeamList(currentBoardID,teamName));
+    }
+
+    @And("I validate that board {string} is in home page at {string} list")
+    public void iValidateThatBoardIsInHomePageAtList(String arg0, String arg1) {
+        header.goToHomeFromTeam();
+        home.isBoardInRecentlyList(currentBoardID);
+
+    }
+
+    @And("I close the board with boardID")
+    public void iCloseTheBoardWithBoardID() {
+        boardDetails=boards.goToBoardDetails(currentBoardID);
+        boardDetails.openBoardMenu();
+        boardDetails.expandMoreMenu();
+        boardDetails.closeBoard();
+    }
+
+    @And("I delete the board with boardID")
+    public void iDeleteTheBoardWithBoardID() {
+        boardDetails.deleteBoard();
     }
 }
 

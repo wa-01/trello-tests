@@ -25,6 +25,25 @@ public class BoardDetails extends AbstractPage{
     @FindBy(xpath = "//div[contains(@class,\"board-header-btn-name\")]/span")
     private WebElement boardName;
 
+    @FindBy(css = "a[class *='js-show-sidebar']")
+    private WebElement showMenuLink;
+
+    @FindBy(css = "a[class *='js-close-board']")
+    private WebElement closeBoardLink;
+
+    @FindBy(css = "input[class *='js-confirm']")
+    private WebElement confirmInput;
+
+    @FindBy(css = "a[class *='js-delete']")
+    private WebElement deleteBoardLInk;
+
+    @FindBy(css = "div[class='board-menu-container']")
+    private WebElement boardMenuContainer;
+
+
+
+
+
 
 
     public String getCurrentBoardID() {
@@ -45,6 +64,25 @@ public class BoardDetails extends AbstractPage{
 
     public void expandBoardsList() {
         action.click(boardMenuButton);
+    }
+
+    public void openBoardMenu() {
+        if(!boardMenuContainer.isDisplayed())
+            action.click(showMenuLink);
+    }
+
+    public void expandMoreMenu() {
+        action.click(moreLink);
+    }
+
+    public void closeBoard() {
+        action.click(closeBoardLink);
+        action.click(confirmInput);
+    }
+
+    public void deleteBoard() {
+        action.click(deleteBoardLInk);
+        action.click(confirmInput);
 
     }
 }
