@@ -3,6 +3,7 @@ package com.webaut.project.pages.team;
 import com.webaut.project.pages.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class TeamForm extends AbstractPage {
 
@@ -23,21 +24,22 @@ public class TeamForm extends AbstractPage {
     private WebElement teamInputName;
 
     public void setTeamName(String teamName){
-        teamInputName.sendKeys(teamName);
+        wait.until(ExpectedConditions.visibilityOf(headerTitle));
+        action.setValue(teamInputName,teamName);
     }
 
     @FindBy(css = "#org-desc")
     private WebElement teamInputDescription;
 
     public void setTeamDescription(String description){
-        teamInputDescription.sendKeys(description);
+        action.setValue(teamInputDescription,description);
     }
 
     @FindBy(css = "input[class = 'primary wide js-save']")
     private WebElement clickCreate;
 
     public void clickCreate(){
-        clickCreate.click();
+        action.click(clickCreate);
     }
 
     @FindBy(css = "input[data-test-id='header-create-team-name-input']")
@@ -57,5 +59,4 @@ public class TeamForm extends AbstractPage {
     private WebElement headerCreateTeamButton;
 
     public void clickHeaderCreateTeam(){headerCreateTeamButton.click();}
-
 }
