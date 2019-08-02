@@ -54,7 +54,7 @@ public class BoardSteps {
     @And("I validate that board {string} is in boards details page at {string} list")
     public void iValidateThatBoardIsInBoardsDetailsPageAtList(String expectedBoardName, String listName) {
         boardDetails.expandBoardsList();
-        Assert.assertEquals( boardDetails.isBoardInRecentBoardsList(currentBoardID),expectedBoardName);
+        Assert.assertEquals(header.isBoardInRecentBoardsList(listName,currentBoardID),expectedBoardName);
     }
 
     @And("I validate that board {string} is in boards page at {string} list")
@@ -72,13 +72,11 @@ public class BoardSteps {
     @And("I validate that board {string} is in home page at {string} list")
     public void iValidateThatBoardIsInHomePageAtList(String arg0, String arg1) {
         header.goToHomeFromTeam();
-        home.isBoardInRecentlyList(currentBoardID);
-
+        Assert.assertTrue(home.isBoardInRecentlyList(currentBoardID));
     }
 
     @And("I close the board with boardID")
     public void iCloseTheBoardWithBoardID() {
-        boardDetails=boards.goToBoardDetails(currentBoardID);
         boardDetails.openBoardMenu();
         boardDetails.expandMoreMenu();
         boardDetails.closeBoard();
@@ -87,6 +85,17 @@ public class BoardSteps {
     @And("I delete the board with boardID")
     public void iDeleteTheBoardWithBoardID() {
         boardDetails.deleteBoard();
+    }
+
+    @And("I go to the Board details from Board Menu with: boardID and the {string} team")
+    public void iGoToBoardDetailsFromBoardsMenu(String boarTeam) {
+        header.goToBoardDetailsFromBoardMenu(boarTeam,currentBoardID);
+    }
+
+    @Then("I validate that the message {string} is displayed")
+    public void iValidateThatTheMessageIsDisplayed(String message) {
+
+        Assert.assertTrue(boardDetails.isBoardDeletingMessageDisplayed(message));
     }
 }
 

@@ -6,7 +6,8 @@ import org.openqa.selenium.support.FindBy;
 
 public class BoardDetails extends AbstractPage{
 
-    private static final String RECENT_BOARDS_lINK_LIST = "(//span[text()='Recent Boards']/ancestor::div/following-sibling::div//a[contains(@href,'%s')])[1]";
+
+    private static final String RECENT_BOARDS_lINK_LIST =   "//span[text()='%s']/../../following-sibling::div//a[contains(@href,'%s')]";
 
 
     @FindBy(css = ".open-add-list.js-open-add-list>span")
@@ -39,6 +40,10 @@ public class BoardDetails extends AbstractPage{
 
     @FindBy(css = "div[class='board-menu-container']")
     private WebElement boardMenuContainer;
+
+    @FindBy(xpath = "//div[contains (@class,\"quiet\")]/h1")
+    private WebElement boardMessage;
+
 
 
 
@@ -83,6 +88,12 @@ public class BoardDetails extends AbstractPage{
     public void deleteBoard() {
         action.click(deleteBoardLInk);
         action.click(confirmInput);
+
+    }
+
+    public boolean isBoardDeletingMessageDisplayed(String expectedMessage) {
+
+        return boardMessage.getText().equals(expectedMessage);
 
     }
 }

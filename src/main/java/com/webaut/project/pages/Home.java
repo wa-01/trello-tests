@@ -13,7 +13,7 @@ public class Home extends AbstractPage {
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
             "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
   
-    protected static final String RECENTLY_BOARDS_LIST = " //div[text()='Recently Viewed']/../following-sibling::div[contains(@href,'%s')]";
+    protected static final String RECENTLY_BOARDS_LIST = " //div[text()='Recently Viewed']/../following-sibling::div/a[contains(@href,'%s')]";
 
     @FindBy(xpath = "//div[text()='teams']")
     private WebElement teamLabelOnSideBar;

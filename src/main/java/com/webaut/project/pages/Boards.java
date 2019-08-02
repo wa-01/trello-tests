@@ -17,7 +17,6 @@ public class Boards extends AbstractPage {
         String specificTeamList;
         specificTeamList = String.format(XPATH_TEAM_LIST_IN_BOARDS,teamName);
         String specificTeamBoard=specificTeamList.concat(String.format(XPATH_BOARD_LINK,boardID));
-        System.out.println(specificTeamBoard);
         return  driver.findElements(By.xpath(specificTeamBoard)).size()==1;
     }
 
