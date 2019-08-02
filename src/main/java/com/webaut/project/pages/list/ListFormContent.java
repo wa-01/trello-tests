@@ -19,12 +19,12 @@ public class ListFormContent extends AbstractPage {
 
     private String LIST_ITEM= "//h2[text()='%s']/ancestor::div[@class='js-list list-wrapper']";
 
-    public static final String LIST_HEADER = "//h2[contains(text(),'%s')]/preceding-sibling::div[@class='js-list list-wrapper']";
+    public static final String LIST_HEADER = "//h2[contains(text(),'%s')]/preceding-sibling::div";//[@class='js-list list-wrapper']";
 
     public static final String LIST_PRECEDING = "/preceding-sibling::div[@class='js-list list-wrapper']/descendant::h2[text()='%s']";
 
     public String getListTitle(){
-        return action.getAttribute(By.cssSelector(listTitleLabel), "innerText");
+        return action.getAttributeFromNonVisible(By.cssSelector(listTitleLabel), "innerText");
     }
     public void clickEditListButton(String listTitle){
         action.click(By.xpath((String.format(LIST_HEADER, listTitle))));

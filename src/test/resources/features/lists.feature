@@ -1,9 +1,16 @@
 Feature: Lists
   Background: User is in Board
     Given I login as "owner"
-    And a board is created
+    #And a board is created
+    When I open the board creation form
+    And I fill the board form with:
+      | title   | MyBoardTestZ |
+      | team    | No team     |
+      | privacy | Private     |
+      | image   | red       |
+    And I click cancel button in list form
 
-  Scenario: Add a list in empty board
+  Scenario: Add a list in board
     #And I am in empty board
     When I click add a list button
     And I set the list title

@@ -58,6 +58,11 @@ public class WebDriverAction {
         return webElement.getAttribute(attribute);
     }
 
+    public String getAttributeFromNonVisible(By selector, String attribute) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
+        return driver.findElement(selector).getAttribute(attribute);
+    }
+
     public String getAttribute(By selector, String attribute) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
         return driver.findElement(selector).getAttribute(attribute);

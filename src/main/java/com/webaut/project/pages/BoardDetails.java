@@ -1,5 +1,6 @@
 package com.webaut.project.pages;
 
+import com.webaut.project.pages.list.ListForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,7 @@ public class BoardDetails extends AbstractPage{
 
 
     @FindBy(css = ".open-add-list.js-open-add-list>span")
-    private WebElement addListbutton;
+    private WebElement addListButton;
 
     @FindBy(css = "button[data-test-id = 'header-boards-menu-button'")
     private WebElement boardMenuButton;

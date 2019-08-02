@@ -28,11 +28,16 @@ public class ListSteps {
         this.moveList = moveList;
     }
 
-    @And("a board is created")
-    public void aBoardIsCreated() {
-        //TODO: replace with code to create a board
-        Home homePage = new Home();
+    @And("I click cancel button in list form")
+    public void iClickCancelButtonInListForm() {
+        listForm.clickCancelButton();
     }
+//    @And("a board is created")
+//    public void aBoardIsCreated() {
+//        //TODO: replace with code to create a board
+//        Home homePage = new Home();
+
+//    }
 
     @When("I click add a list button")
     public void iClickAddAListButton() {

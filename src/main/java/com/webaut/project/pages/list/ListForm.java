@@ -17,6 +17,9 @@ public class ListForm extends AbstractPage {
     @FindBy(css = ".mod-list-add-button")
     private WebElement addListButton;
 
+    @FindBy(css = ".js-cancel-edit")
+    private WebElement cancelEditListButton;
+
     private void setListFields(Map<String, String> data){
         Map<String, ISteps> strategyMap = new HashMap<>();
         strategyMap.put("title", () -> action.setValue(listNameTextField, data.get("title")));
@@ -30,5 +33,9 @@ public class ListForm extends AbstractPage {
     public void addList(Map<String, String> data){
         setListFields(data);
         action.click((addListButton));
+    }
+
+    public void clickCancelButton(){
+        action.click(cancelEditListButton);
     }
 }
