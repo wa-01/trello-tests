@@ -1,6 +1,9 @@
 package com.webaut.project.steps;
 
+import com.webaut.project.pages.BoardArchiveMenu;
 import com.webaut.project.pages.BoardDetails;
+import com.webaut.project.pages.BoardMenu;
+import com.webaut.project.pages.BoardMoreMenu;
 import com.webaut.project.pages.list.ListActions;
 import com.webaut.project.pages.list.ListCreateForm;
 import com.webaut.project.pages.list.ListFormContent;
@@ -10,21 +13,24 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.junit.Assert;
 
-import java.util.Map;
-
 public class ListSteps {
     private BoardDetails boardDetails;
     private ListFormContent listContent;
     private ListActions listActions;
     private ListCreateForm listCreateForm;
     private MoveList moveList;
+    private BoardMenu boardMenu;
+    private BoardMoreMenu boardMoreMenu;
+    private BoardArchiveMenu boardArchiveMenu;
 
-    public ListSteps(BoardDetails boardDetails, ListFormContent listContent, ListActions listActions, ListCreateForm listCreateForm, MoveList moveList){
+    public ListSteps(BoardDetails boardDetails, ListFormContent listContent, ListActions listActions,
+                     ListCreateForm listCreateForm, MoveList moveList, BoardMenu boardMenu){
         this.boardDetails = boardDetails;
         this.listContent = listContent;
         this.listActions = listActions;
         this.listCreateForm = listCreateForm;
         this.moveList = moveList;
+        this.boardMenu = boardMenu;
     }
 
     @And("I click cancel button in list form")
@@ -42,15 +48,15 @@ public class ListSteps {
         listCreateForm.addList(listTitle);
     }
 
-    @Then("I validate the new list is {string}")
-    public void iValidateTheNewListIs(String listTitle) {
+    @Then("I validate the list {string} is displayed")
+    public void iValidateTheListIsDisplayed(String listTitle) {
         String actualLisTitle = listContent.getListTitle();
         Assert.assertEquals(actualLisTitle, listTitle);
     }
 
     @When("I click the list name {string}")
     public void iClickTheListName(String listTitle) {
-        listContent.clickEditListButton(listTitle);
+        listContent.clickListTitle(listTitle);
     }
 
     @And("I set a new list title {string}")
@@ -71,7 +77,6 @@ public class ListSteps {
 
     @And("I select the action list {string}")
     public void iSelectTheActionList(String listAction) {
-        //listActions.selectArchiveThisList();
         listActions.selectAction(listAction);
     }
 
@@ -81,9 +86,9 @@ public class ListSteps {
         Assert.assertFalse(actualResult);
     }
 
-    @When("I move {string} to {string} position")
-    public void iMoveToPosition(String listSource, String listTarget) {
-        listContent.moveList(listSource, listTarget);
+    @And("I select the position {string}")
+    public void iSelectThePosition(String newPosition) {
+        moveList.selectPosition(newPosition);
     }
 
     @Then("I validate {string} is before {string}")
@@ -91,8 +96,28 @@ public class ListSteps {
         Assert.assertTrue(listContent.isListAfter(beforeList, afterList));
     }
 
-    @And("I select the position {string}")
-    public void iSelectThePosition(String newPosition) {
-        moveList.selectPosition(newPosition);
+    @And("I click More in right sidebar menu")
+    public void iClickMoreInRightSidebarMenu() {
+        boardMoreMenu = boardMenu.clickMore();
+    }
+
+    @And("I click Archived Items")
+    public void iClickArchivedItems() {
+        boardArchiveMenu = boardMoreMenu.clickArchivedItems();
+    }
+
+    @And("I type {string} in search field")
+    public void iTypeInSearchField(String searchText) {
+        boardArchiveMenu.setTextSearch(searchText);
+    }
+
+    @And("I click Switch to lists button")
+    public void iClickSwitchToListsButton() {
+        boardArchiveMenu.clickSwitchToLists();
+    }
+
+    @And("I validate the {string} is displayed in the search results")
+    public void iValidateTheIsDisplayedInTheSearchResults(String listName) {
+        Assert.assertTrue(boardArchiveMenu.isElementInResults(listName));
     }
 }

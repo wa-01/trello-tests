@@ -24,7 +24,7 @@ public class ListFormContent extends AbstractPage {
     public String getListTitle(){
         return action.getAttributeFromNonVisible(By.cssSelector(listTitleLabel), "innerText");
     }
-    public void clickEditListButton(String listTitle){
+    public void clickListTitle(String listTitle){
         action.click(By.xpath((String.format(LIST_HEADER, listTitle))));
     }
 
