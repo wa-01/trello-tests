@@ -19,6 +19,7 @@ public class WebDriverAction {
     }
 
     public void click(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
     }
@@ -30,6 +31,11 @@ public class WebDriverAction {
 
     public void setValue(By selector, String value) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
+        driver.findElement(selector).sendKeys(value);
+    }
+
+    public void setValueNonVisibleElement(By selector, String value) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
         driver.findElement(selector).sendKeys(value);
     }
 
@@ -71,6 +77,16 @@ public class WebDriverAction {
     public boolean isSelected(WebElement webElement) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         return webElement.isSelected();
+    }
+
+    public boolean isElementPresent(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        try {
+            driver.findElement(locator);
+        } catch (final NoSuchElementException e) {
+            return false;
+        }
+        return true;
     }
 
     public boolean isElementVisible(final By element) {

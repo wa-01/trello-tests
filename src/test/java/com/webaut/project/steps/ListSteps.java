@@ -1,9 +1,8 @@
 package com.webaut.project.steps;
 
 import com.webaut.project.pages.BoardDetails;
-import com.webaut.project.pages.Home;
 import com.webaut.project.pages.list.ListActions;
-import com.webaut.project.pages.list.ListForm;
+import com.webaut.project.pages.list.ListCreateForm;
 import com.webaut.project.pages.list.ListFormContent;
 import com.webaut.project.pages.list.MoveList;
 import cucumber.api.java.en.And;
@@ -17,20 +16,20 @@ public class ListSteps {
     private BoardDetails boardDetails;
     private ListFormContent listContent;
     private ListActions listActions;
-    private ListForm listForm;
+    private ListCreateForm listCreateForm;
     private MoveList moveList;
 
-    public ListSteps(BoardDetails boardDetails, ListFormContent listContent, ListActions listActions, ListForm listForm, MoveList moveList){
+    public ListSteps(BoardDetails boardDetails, ListFormContent listContent, ListActions listActions, ListCreateForm listCreateForm, MoveList moveList){
         this.boardDetails = boardDetails;
         this.listContent = listContent;
         this.listActions = listActions;
-        this.listForm = listForm;
+        this.listCreateForm = listCreateForm;
         this.moveList = moveList;
     }
 
     @And("I click cancel button in list form")
     public void iClickCancelButtonInListForm() {
-        listForm.clickCancelButton();
+        listCreateForm.clickCancelButton();
     }
 //    @And("a board is created")
 //    public void aBoardIsCreated() {
@@ -41,12 +40,12 @@ public class ListSteps {
 
     @When("I click add a list button")
     public void iClickAddAListButton() {
-        listForm = boardDetails.clickAddListButton();
+        listCreateForm = boardDetails.clickAddListButton();
     }
 
     @And("I set the list title")
     public void iSetTheListTitle(Map<String, String> data) {
-        listForm.addList(data);
+        listCreateForm.addList(data);
     }
 
     @Then("I validate the new list is {string}")

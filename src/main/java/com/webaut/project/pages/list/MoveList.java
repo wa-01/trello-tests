@@ -9,7 +9,7 @@ public class MoveList extends AbstractPage {
     private String moveButton = ".js-commit-position";
 
     public void selectPosition(String position){
-        action.setValue(By.cssSelector(selectorPosition), position);
+        action.setValueNonVisibleElement(By.cssSelector(selectorPosition), position);
         action.click(By.cssSelector(moveButton));
     }
 

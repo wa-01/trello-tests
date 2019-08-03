@@ -1,6 +1,6 @@
 package com.webaut.project.pages;
 
-import com.webaut.project.pages.list.ListForm;
+import com.webaut.project.pages.list.ListCreateForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -87,12 +87,12 @@ public class BoardDetails extends AbstractPage{
         action.click(confirmInput);
 
     }
-    public ListForm clickAddListButton() {
+    public ListCreateForm clickAddListButton() {
         action.click(addListButton);
-        return new ListForm();
+        return new ListCreateForm();
     }
 
     public boolean isListVisible(String listName) {
-        return action.isElementVisible(By.xpath(String.format(LIST_TITLE,listName)));
+        return action.isElementPresent(By.xpath(String.format(LIST_TITLE, listName)));
     }
 }

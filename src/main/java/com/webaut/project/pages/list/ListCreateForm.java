@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class ListForm extends AbstractPage {
+public class ListCreateForm extends AbstractPage {
 
     @FindBy(css = ".list-name-input")
     private WebElement listNameTextField;
@@ -27,7 +27,6 @@ public class ListForm extends AbstractPage {
         for (String key : keys) {
             strategyMap.get(key).execute();
         }
-
     }
 
     public void addList(Map<String, String> data){

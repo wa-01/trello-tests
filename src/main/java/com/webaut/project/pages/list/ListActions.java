@@ -8,8 +8,6 @@ import java.util.Map;
 
 public class ListActions extends AbstractPage {
 
-/*    @FindBy(css = ".js-close-list")
-    private WebElement archiveThisListOption;*/
     private Map<String, By> actions;
     private String archiveThisListAction = ".js-close-list";
     private String moveListAction = ".js-move-list";
@@ -18,9 +16,6 @@ public class ListActions extends AbstractPage {
         actions = new HashMap<>();
         actions.put("Archive This List", By.cssSelector(archiveThisListAction));
         actions.put("Move List", By.cssSelector(moveListAction));
-    }
-    public void selectArchiveThisList(){
-        action.click(By.cssSelector(archiveThisListAction));
     }
 
     public void selectAction(String listAction){
