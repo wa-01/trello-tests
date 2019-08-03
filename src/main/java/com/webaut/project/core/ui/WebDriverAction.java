@@ -109,7 +109,7 @@ public class WebDriverAction {
         return true;
     }
 
-    public void moveElement(By source, By target){
+/*    public void moveElement(By source, By target){
         wait.until(ExpectedConditions.visibilityOfElementLocated(source));
         wait.until(ExpectedConditions.visibilityOfElementLocated(target));
         WebElement destination = driver.findElement(target);
@@ -120,5 +120,5 @@ public class WebDriverAction {
                 destination.getLocation().getY() + destination.getSize().getHeight()/2).build().perform();
         action.release().perform();//.moveByOffset(-1,-1)
         //action.dragAndDrop(driver.findElement(source), driver.findElement(target)).build().perform();
-    }
+    }*/
 }

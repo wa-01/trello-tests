@@ -3,7 +3,7 @@ Feature: Lists
     Given I login as "owner"
     When I open the board creation form
     And I fill the board form with:
-      | title   | MyBoardTestZ |
+      | title   | My Board for Lists |
       | team    | No team     |
       | privacy | Private     |
       | image   | red       |

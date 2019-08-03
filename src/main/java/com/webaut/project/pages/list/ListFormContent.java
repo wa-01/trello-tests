@@ -38,9 +38,9 @@ public class ListFormContent extends AbstractPage {
         return new ListActions();
     }
 
-    public void moveList(String listSource, String listTarget){
+/*    public void moveList(String listSource, String listTarget){
         action.moveElement(By.xpath(String.format(LIST_ITEM, listSource)), By.xpath(String.format(LIST_ITEM, listTarget)));
-    }
+    }*/
 
     public boolean isListAfter(String precedingList, String followingList){
         return action.isElementVisible(By.xpath(String.format(LIST_ITEM + LIST_PRECEDING, followingList, precedingList)));
