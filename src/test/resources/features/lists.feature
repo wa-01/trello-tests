@@ -32,7 +32,6 @@ Feature: Lists
     And I type "My First List" in search field
     And I click Switch to lists button
     And I validate the "My First List" is displayed in the search results
-    #TODO: refactor ListActions and board's method isListElementVisible
 
   Scenario: Move a List
     Given I click add a list button

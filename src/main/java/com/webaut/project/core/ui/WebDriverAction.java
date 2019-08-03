@@ -15,7 +15,7 @@ public class WebDriverAction {
     }
 
     public void click(By locator) {
-        //wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
     }
