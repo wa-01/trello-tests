@@ -31,21 +31,15 @@ public class ListSteps {
     public void iClickCancelButtonInListForm() {
         listCreateForm.clickCancelButton();
     }
-//    @And("a board is created")
-//    public void aBoardIsCreated() {
-//        //TODO: replace with code to create a board
-//        Home homePage = new Home();
-
-//    }
 
     @When("I click add a list button")
     public void iClickAddAListButton() {
         listCreateForm = boardDetails.clickAddListButton();
     }
 
-    @And("I set the list title")
-    public void iSetTheListTitle(Map<String, String> data) {
-        listCreateForm.addList(data);
+    @And("I set the list title {string}")
+    public void iSetTheListTitle(String listTitle) {
+        listCreateForm.addList(listTitle);
     }
 
     @Then("I validate the new list is {string}")
