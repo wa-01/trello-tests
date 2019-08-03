@@ -33,7 +33,6 @@ Feature: Lists
     And I click Switch to lists button
     And I validate the "My First List" is displayed in the search results
     #TODO: refactor ListActions and board's method isListElementVisible
-    #TODO: Add validations
 
   Scenario: Move a List
     Given I click add a list button
@@ -45,6 +44,6 @@ Feature: Lists
     Then I validate "My List2" is before "My List1"
     And I click the actions button in the list "My List1"
     And I select the action list "Move List"
-#    And I validate the position is "2"
-#    And I click position
-#    And I validate the position "2" is current
+    And I validate the position "2" is displayed
+    And I click position
+    And I validate the position "2" is marked as current

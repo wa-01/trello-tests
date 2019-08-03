@@ -75,15 +75,15 @@ public class ListSteps {
         listActions = listContent.clickListActionsButton(listTitle);
     }
 
-    @And("I select the action list {string}")
-    public void iSelectTheActionList(String listAction) {
-        listActions.selectAction(listAction);
-    }
-
     @Then("I validate the list named {string} is archived")
     public void iValidateTheListNamedIsArchived(String listName) {
         boolean actualResult = boardDetails.isListVisible(listName);
         Assert.assertFalse(actualResult);
+    }
+
+    @And("I select the action list {string}")
+    public void iSelectTheActionList(String listAction) {
+        listActions.selectAction(listAction);
     }
 
     @And("I select the position {string}")
@@ -119,5 +119,20 @@ public class ListSteps {
     @And("I validate the {string} is displayed in the search results")
     public void iValidateTheIsDisplayedInTheSearchResults(String listName) {
         Assert.assertTrue(boardArchiveMenu.isElementInResults(listName));
+    }
+
+    @And("I validate the position {string} is displayed")
+    public void iValidateThePositionIsDisplayed(String position) {
+        Assert.assertEquals(position, moveList.getPositionDisplayed());
+    }
+
+    @And("I click position")
+    public void iClickPosition() {
+        moveList.clickPosition();
+    }
+
+    @And("I validate the position {string} is marked as current")
+    public void iValidateThePositionIsMarkedAsCurrent(String position) {
+        Assert.assertTrue(moveList.getCurrentPosition().contains(position));
     }
 }

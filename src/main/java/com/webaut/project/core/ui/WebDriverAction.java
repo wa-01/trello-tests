@@ -80,8 +80,18 @@ public class WebDriverAction {
         return webElement.isSelected();
     }
 
-    public boolean isElementPresent(By locator) {
+    public boolean isElementInvisible(By locator) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        try {
+            driver.findElement(locator);
+        } catch (final NoSuchElementException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isElementPresent(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
         try {
             driver.findElement(locator);
         } catch (final NoSuchElementException e) {

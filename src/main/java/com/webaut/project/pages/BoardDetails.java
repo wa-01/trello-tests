@@ -93,6 +93,6 @@ public class BoardDetails extends AbstractPage{
     }
 
     public boolean isListVisible(String listName) {
-        return action.isElementPresent(By.xpath(String.format(LIST_TITLE, listName)));
+        return action.isElementInvisible(By.xpath(String.format(LIST_TITLE, listName)));
     }
 }
