@@ -32,6 +32,9 @@ public class ListCreateForm extends AbstractPage {
     public void addList(Map<String, String> data){
         setListFields(data);
         action.click((addListButton));
+//
+//        action.setValue(listHeaderEditable, newTitle);
+//        action.click(addListButton);
     }
 
     public void clickCancelButton(){

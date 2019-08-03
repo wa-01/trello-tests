@@ -2,13 +2,11 @@ package com.webaut.project.pages.list;
 
 import com.webaut.project.pages.AbstractPage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class ListFormContent extends AbstractPage {
-
-    @FindBy (css = ".mod-list-add-button")
-    private WebElement addListButton;
 
     @FindBy (css = "textarea:focus")
     private WebElement listHeaderEditable;
@@ -32,7 +30,7 @@ public class ListFormContent extends AbstractPage {
 
     public void setListTitle(String newTitle){
         action.setValue(listHeaderEditable, newTitle);
-        action.click(addListButton);
+        action.setValue(listHeaderEditable, Keys.ENTER);
     }
 
     public ListActions clickListActionsButton(String listTitle){
