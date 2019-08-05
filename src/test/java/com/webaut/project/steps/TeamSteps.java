@@ -65,7 +65,7 @@ public class TeamSteps {
 
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
-        Thread.sleep(1000);
+        Thread.sleep(1500);
         header.clickHomeButton();
         home.clickListedTeam(teamName);
         teamSideBarOption.clickSettings();
@@ -78,7 +78,9 @@ public class TeamSteps {
     }
 
     @When("I edit {string} Team updating {string} as Name and {string} as description")
-    public void iEditNameAndDescriptionOfTeam(String teamName, String newTeamName, String newDescription) throws InterruptedException {
+    public void iEditNameAndDescriptionOfTeam(String teamName, String newTeamName, String newDescription)
+            throws InterruptedException {
+        Thread.sleep(1500);
         teamDetails.clickEditTeamProfile();
         teamEditForm.updateTeamName(newTeamName);
         teamEditForm.updateTeamDescription(newDescription);
@@ -95,10 +97,11 @@ public class TeamSteps {
 
     @When ("I edit {string} Team updating {string} as Name and {string} as description canceled")
     public void iEditTeamShortNameAndWebsite(String teamName, String shortName, String website) throws InterruptedException {
-       teamDetails.clickEditTeamProfile();
-       teamEditForm.updateTeamShortName(shortName);
-       teamEditForm.updateTeamWebsite(website);
-       teamEditForm.clickCancel();
+        Thread.sleep(1500);
+        teamDetails.clickEditTeamProfile();
+        teamEditForm.updateTeamShortName(shortName);
+        teamEditForm.updateTeamWebsite(website);
+        teamEditForm.clickCancel();
     }
 
     @Then("I validate {string} Team remains {string} as Name and {string} as Description")

@@ -36,28 +36,33 @@ public class TeamEditForm extends AbstractPage {
         return (title);
     }
 
-    public void updateTeamName(String teamNewName)  {
+    public void updateTeamName(String teamNewName) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         action.setValue(displayName,teamNewName);
     }
 
-    public void updateTeamShortName(String teamNewShortName){
+    public void updateTeamShortName(String teamNewShortName) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         action.setValue(shortName,teamNewShortName);
     }
 
-    public void updateTeamWebsite(String teamNewWebsite){
+    public void updateTeamWebsite(String teamNewWebsite) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         action.setValue(website,teamNewWebsite);
     }
 
-    public void updateTeamDescription(String teamNewdescription){
+    public void updateTeamDescription(String teamNewdescription) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         action.setValue(descriptionTextArea,teamNewdescription);
     }
 
-    public void clickSave(){
+    public void clickSave() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         action.click(saveButton);
     }
 
@@ -68,6 +73,7 @@ public class TeamEditForm extends AbstractPage {
 
     public String getDisplayName() throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(imageIcon));
+        Thread.sleep(1000);
         String teamsDisplayName = displayName.getAttribute("value");
         return (teamsDisplayName);
     }
