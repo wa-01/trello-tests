@@ -4,7 +4,6 @@ import com.webaut.project.pages.AbstractPage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import sun.awt.windows.WEmbeddedFrame;
 
 public class TeamDetails extends AbstractPage {
 
