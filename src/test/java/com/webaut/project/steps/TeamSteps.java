@@ -3,10 +3,7 @@ package com.webaut.project.steps;
 import com.webaut.project.pages.HeaderCreateMenu;
 import com.webaut.project.pages.Home;
 import com.webaut.project.pages.Header;
-import com.webaut.project.pages.team.TeamDeleteConfirmation;
-import com.webaut.project.pages.team.TeamDetails;
-import com.webaut.project.pages.team.TeamForm;
-import com.webaut.project.pages.team.TeamSideBarOption;
+import com.webaut.project.pages.team.*;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -23,17 +20,19 @@ public class TeamSteps {
     private HeaderCreateMenu headerCreateMenuHeader;
     private TeamSideBarOption teamSideBarOption;
     private TeamDeleteConfirmation teamDeleteConfirmation;
+    private TeamEditForm teamEditForm;
 
     public TeamSteps (Home home, TeamForm teamForm, TeamDetails teamDetails, Header header,
                       HeaderCreateMenu headerCreateMenuHeader, TeamSideBarOption teamSideBarOption,
-                      TeamDeleteConfirmation teamDeleteConfirmation){
+                      TeamDeleteConfirmation teamDeleteConfirmation, TeamEditForm teamEditForm){
         this.home = home;
         this.teamForm = teamForm;
         this.teamDetails = teamDetails;
-        this.header =header;
+        this.header = header;
         this.headerCreateMenuHeader = headerCreateMenuHeader;
         this.teamSideBarOption = teamSideBarOption;
         this.teamDeleteConfirmation = teamDeleteConfirmation;
+        this.teamEditForm = teamEditForm;
 
     }
     @Given("I Create a {string} Team with {string} from Dashboards")
@@ -45,7 +44,7 @@ public class TeamSteps {
     }
 
     @Then("I validate that {string} Team is loaded")
-    public void iValidateTeamIsLoaded(String teamName){
+    public void iValidateTeamIsLoaded(String teamName) throws InterruptedException {
         Assert.assertEquals(teamName, teamDetails.getHeaderTitle());
     }
 
@@ -66,6 +65,8 @@ public class TeamSteps {
 
     @When("I Delete {string} Team from Home Dashboards - Side Bar")
     public void iDeleteTeamFromHomeDashboardSideBar(String teamName) throws InterruptedException {
+        Thread.sleep(1500);
+        header.clickHomeButton();
         home.clickListedTeam(teamName);
         teamSideBarOption.clickSettings();
         teamSideBarOption.clickDeleteLink();
@@ -75,4 +76,42 @@ public class TeamSteps {
     public void iValidateTeamIsRemovedFromSideBar(String teamName) throws InterruptedException {
         Assert.assertFalse(home.teamIsListedOnSideBar(teamName));
     }
+
+    @When("I edit {string} Team updating {string} as Name and {string} as description")
+    public void iEditNameAndDescriptionOfTeam(String teamName, String newTeamName, String newDescription)
+            throws InterruptedException {
+        Thread.sleep(1500);
+        teamDetails.clickEditTeamProfile();
+        teamEditForm.updateTeamName(newTeamName);
+        teamEditForm.updateTeamDescription(newDescription);
+        teamEditForm.clickSave();
+    }
+    @Then("I validate updated Team name is {string}")
+    public void iValidateUpdateTeamName(String expectedName) throws InterruptedException {
+        Assert.assertEquals(teamDetails.getHeaderTitle(),expectedName);
+    }
+    @Then("I validate updated Team description is {string}")
+    public void iValidateUpdateTeamDescription(String newDescription){
+        Assert.assertEquals(teamDetails.getDescription(),newDescription);
+    }
+
+    @When ("I edit {string} Team updating {string} as Name and {string} as description canceled")
+    public void iEditTeamShortNameAndWebsite(String teamName, String shortName, String website) throws InterruptedException {
+        Thread.sleep(1500);
+        teamDetails.clickEditTeamProfile();
+        teamEditForm.updateTeamShortName(shortName);
+        teamEditForm.updateTeamWebsite(website);
+        teamEditForm.clickCancel();
+    }
+
+    @Then("I validate {string} Team remains {string} as Name and {string} as Description")
+    public void iValidateTeamNameAndDescriptonWereNotUpdated(String Name, String teamName, String teamDescription) throws InterruptedException {
+        Assert.assertEquals(teamDetails.getHeaderTitle(), teamName);
+        Assert.assertEquals(teamDetails.getDescription(), teamDescription);
+        teamDetails.clickEditTeamProfile();
+        Assert.assertEquals(teamEditForm.getDisplayName(), teamName);
+        Assert.assertEquals(teamEditForm.getDescription(), teamDescription);
+        teamEditForm.clickCancel();
+    }
+
 }
