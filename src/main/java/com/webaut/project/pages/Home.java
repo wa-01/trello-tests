@@ -25,7 +25,6 @@ public class Home extends AbstractPage {
     }
 
     public boolean teamIsListedOnSideBar(String teamName) throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(1000);
         return action.isElementVisible(By.xpath(String.format(TEAM_NAME_ON_DASHBOARDS, teamName)));
     }
