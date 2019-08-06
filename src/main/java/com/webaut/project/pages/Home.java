@@ -11,7 +11,7 @@ public class Home extends AbstractPage {
             "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
 
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
-            "button[data-test-id='home-navigation-create-team-button']";
+            "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
 
     protected static final String RECENTLY_BOARDS_LIST = "//div[text()='%s']/../following-sibling::div/a[contains(@href,'%s')]";
 
@@ -19,16 +19,18 @@ public class Home extends AbstractPage {
     private WebElement teamLabelOnSideBar;
 
     public void clickCreateTeam() throws InterruptedException {
-        // wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
+        wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(600);
         action.click(By.cssSelector(CREATE_TEAM_BUTTON_DASHBOARDS));
     }
 
     public boolean teamIsListedOnSideBar(String teamName) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(1000);
         return action.isElementVisible(By.xpath(String.format(TEAM_NAME_ON_DASHBOARDS, teamName)));
     }
     public void clickListedTeam(String teamName) throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(600);
         action.click(By.xpath(String.format(TEAM_NAME_ON_DASHBOARDS, teamName)));
     }
