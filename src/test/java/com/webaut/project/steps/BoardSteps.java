@@ -54,31 +54,30 @@ public class BoardSteps {
     @And("I validate that board {string} is in boards details page at {string} list")
     public void iValidateThatBoardIsInBoardsDetailsPageAtList(String expectedBoardName, String listName) {
         boardDetails.expandBoardsList();
-        Assert.assertEquals( boardDetails.isBoardInRecentBoardsList(currentBoardID),expectedBoardName);
+        Assert.assertEquals( boardDetails.isBoardInRecentBoardsList(listName,currentBoardID),expectedBoardName);
     }
 
     @And("I validate that board {string} is in boards page at {string} list")
     public void iValidateThatBoardIsInBoardsPageAtList(String boardName, String teamName) {
         header.clickHomeButton();
-        Assert.assertTrue(boards.isBoardInTeamList(currentBoardID,teamName));
+        Assert.assertTrue(boards.isBoardInTeamList(teamName,currentBoardID));
     }
 
     @And("I validate that board {string} is in boards page at the team list {string}")
     public void iValidateThatBoardIsInBoardsPageAtTheTeamList(String arg0, String teamName) {
 
-        Assert.assertTrue(boards.isBoardInTeamList(currentBoardID,teamName));
+        Assert.assertTrue(boards.isBoardInTeamList(teamName,currentBoardID));
     }
 
     @And("I validate that board {string} is in home page at {string} list")
-    public void iValidateThatBoardIsInHomePageAtList(String arg0, String arg1) {
+    public void iValidateThatBoardIsInHomePageAtList(String boardName, String listName) {
         header.goToHomeFromTeam();
-        home.isBoardInRecentlyList(currentBoardID);
-
+        Assert.assertTrue(home.isBoardInRecentlyList(listName,currentBoardID));
     }
 
     @And("I close the board with boardID")
     public void iCloseTheBoardWithBoardID() {
-        boardDetails=boards.goToBoardDetails(currentBoardID);
+        //boardDetails=boards.goToBoardDetails(currentBoardID);
         boardDetails.openBoardMenu();
         boardDetails.expandMoreMenu();
         boardDetails.closeBoard();
@@ -87,6 +86,11 @@ public class BoardSteps {
     @And("I delete the board with boardID")
     public void iDeleteTheBoardWithBoardID() {
         boardDetails.deleteBoard();
+    }
+
+    @And("I go to the Board details from Board Menu with: boardID and the {string} team")
+    public void iGoToBoardDetailsFromBoardsMenu(String boardTeam) {
+        header.goToBoardDetailsFromBoardMenu(boardTeam,currentBoardID);
     }
 }
 
