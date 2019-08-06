@@ -29,7 +29,7 @@ public class ListFormContent extends AbstractPage {
     }
 
     public void setListTitle(String newTitle){
-        action.setValue(listHeaderEditable, newTitle);
+        action.setValueFocus(listHeaderEditable, newTitle);
         action.setValue(listHeaderEditable, Keys.ENTER);
     }
 

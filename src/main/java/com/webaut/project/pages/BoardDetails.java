@@ -44,6 +44,7 @@ public class BoardDetails extends AbstractPage{
     private String LIST_TITLE = "//h2[text()='%s']/parent::div";
 
     public String getCurrentBoardID() {
+        action.isElementPresent(By.xpath("//a[contains(@class,\"js-open-more\")]"));
         action.click(moreLink);
         String[] boardPartsURL = boardURL.getAttribute("value").split("/");
         return boardPartsURL[boardPartsURL.length-1];
@@ -69,6 +70,7 @@ public class BoardDetails extends AbstractPage{
     }
 
     public void expandMoreMenu() {
+        action.isElementPresent(By.xpath("//a[contains(@class,\"js-open-more\")]"));
         action.click(moreLink);
     }
 

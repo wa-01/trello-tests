@@ -51,8 +51,9 @@ public class Header extends AbstractPage {
         return new BoardForm();
     }
 
-    public void clickAdd(){
-        addButton.click();
+    public HeaderCreateMenu clickAdd(){
+        action.click(addButton);
+        return new HeaderCreateMenu();
     }
 
     public void goToHomeFromTeam() {

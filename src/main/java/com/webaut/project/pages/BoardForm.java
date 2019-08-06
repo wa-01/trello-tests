@@ -30,7 +30,8 @@ public class BoardForm extends AbstractPage{
     @FindBy(css = "button[data-test-id=\"header-create-board-submit-button\"]")
     private WebElement createBoardButton;
 
-    @FindBy(css = ".list-name-input")
+    //@FindBy(css = ".list-name-input")
+    @FindBy(xpath = "//input[@class='list-name-input']")
     private WebElement listNameInput;
 
     @FindBy(css = ".primary.mod-list-add-button.js-save-edit")

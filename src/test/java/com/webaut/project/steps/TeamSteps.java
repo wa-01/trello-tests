@@ -56,7 +56,7 @@ public class TeamSteps {
 
     @When("I Create a {string} Team with {string} from Header")
     public void iCreateTeamFromHeader(String teamName, String teamDescription){
-        header.clickAdd();
+        headerCreateMenuHeader = header.clickAdd();
         headerCreateMenuHeader.clickLinkCreateTeam();
         teamForm.setHeaderInputName(teamName);
         teamForm.setHeaderTeamDescription(teamDescription);
