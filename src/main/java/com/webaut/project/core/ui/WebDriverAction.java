@@ -114,4 +114,8 @@ public class WebDriverAction {
         return true;
     }
 
+    public void setValueFocus(WebElement webElement, String value) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
+        webElement.sendKeys(value);
+    }
 }
