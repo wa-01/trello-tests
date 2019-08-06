@@ -65,6 +65,7 @@ public class CardForm extends AbstractPage {
 
 
     public void addCard(String listName, String boardName) {
+        action.isElementPresent(By.cssSelector((String.format(BOARD_BUTTON, boardName))));
         action.click(By.cssSelector((String.format(BOARD_BUTTON, boardName))));
         action.click(By.xpath(String.format(ADD_CARD_LINK, listName)));
     }
