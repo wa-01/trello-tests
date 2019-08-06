@@ -20,11 +20,13 @@ public class WebDriverAction {
     }
 
     public void click(By locator) {
+        sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(locator));
         driver.findElement(locator).click();
     }
 
     public void click(WebElement webElement) {
+        sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(webElement));
         webElement.click();
     }
@@ -117,5 +119,13 @@ public class WebDriverAction {
     public void setValueFocus(WebElement webElement, String value) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(value);
+    }
+
+    private void sleep(int miliSeconds) {
+        try {
+            Thread.sleep(miliSeconds);
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
