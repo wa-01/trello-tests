@@ -11,15 +11,15 @@ public class Home extends AbstractPage {
             "//span[@data-test-id='home-team-tab-name' and text () = '%s']";
 
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
-            "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
-  
+            "button[data-test-id='home-navigation-create-team-button']";
+
     protected static final String RECENTLY_BOARDS_LIST = "//div[text()='%s']/../following-sibling::div/a[contains(@href,'%s')]";
 
     @FindBy(xpath = "//div[text()='teams']")
     private WebElement teamLabelOnSideBar;
 
     public void clickCreateTeam() throws InterruptedException {
-        wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
+        // wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
         Thread.sleep(600);
         action.click(By.cssSelector(CREATE_TEAM_BUTTON_DASHBOARDS));
     }
