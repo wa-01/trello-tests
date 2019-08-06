@@ -51,7 +51,7 @@ public class TeamSteps {
 
     @And("I validate that {string} Team is listed in TEAMS section of sidebar")
     public void iValidateTeamIsListedInSidebar(String teamName) throws InterruptedException {
-        header.clickHomeButton();
+        home = header.clickHomeButton();
         Assert.assertTrue(home.teamIsListedOnSideBar(teamName));
     }
 
