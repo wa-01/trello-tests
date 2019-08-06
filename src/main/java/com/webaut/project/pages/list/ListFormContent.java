@@ -34,6 +34,7 @@ public class ListFormContent extends AbstractPage {
     }
 
     public ListActions clickListActionsButton(String listTitle){
+        action.isElementPresent(By.xpath(String.format(listActionsButton, listTitle)));
         action.click(By.xpath(String.format(listActionsButton, listTitle)));
         return new ListActions();
     }

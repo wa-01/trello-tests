@@ -82,7 +82,7 @@ public class ListSteps {
     }
 
     @And("I select the action list {string}")
-    public void iSelectTheActionList(String listAction) {
+    public void iSelectTheActionList(String listAction) throws InterruptedException {
         listActions.selectAction(listAction);
     }
 

@@ -22,6 +22,7 @@ public class BoardArchiveMenu extends AbstractPage{
     }
 
     public boolean isElementInResults(String elementName){
+        action.isElementPresent(By.xpath(String.format(XPATH_SEARCH_RESULT_ITEM, elementName)));
         return action.isElementVisible(By.xpath(String.format(XPATH_SEARCH_RESULT_ITEM, elementName)));
     }
 }

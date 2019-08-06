@@ -18,7 +18,9 @@ public class ListActions extends AbstractPage {
         actions.put("Move List", By.cssSelector(moveListAction));
     }
 
-    public void selectAction(String listAction){
+    public void selectAction(String listAction) throws InterruptedException {
+        action.isElementPresent(actions.get(listAction));
+        Thread.sleep(600);
         action.click(actions.get(listAction));
     }
 }
