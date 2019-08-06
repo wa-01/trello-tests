@@ -12,7 +12,7 @@ public class Home extends AbstractPage {
 
     protected static final String CREATE_TEAM_BUTTON_DASHBOARDS =
             "button[data-test-id='home-navigation-create-team-button'] [class*='icon']";
-
+    
     protected static final String RECENTLY_BOARDS_LIST = "//div[text()='%s']/../following-sibling::div/a[contains(@href,'%s')]";
 
     @FindBy(xpath = "//div[text()='teams']")
@@ -26,7 +26,7 @@ public class Home extends AbstractPage {
 
     public boolean teamIsListedOnSideBar(String teamName) throws InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(teamLabelOnSideBar));
-        Thread.sleep(1000);
+        Thread.sleep(600);
         return action.isElementVisible(By.xpath(String.format(TEAM_NAME_ON_DASHBOARDS, teamName)));
     }
     public void clickListedTeam(String teamName) throws InterruptedException {
