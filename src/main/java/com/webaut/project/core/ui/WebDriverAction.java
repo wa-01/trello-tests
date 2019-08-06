@@ -1,7 +1,9 @@
 package com.webaut.project.core.ui;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -32,9 +34,19 @@ public class WebDriverAction {
         driver.findElement(selector).sendKeys(value);
     }
 
+    public void setValueNonVisibleElement(By selector, String value) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
+        driver.findElement(selector).sendKeys(value);
+    }
+
     public void setValue(WebElement webElement, String value) {
         wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
+        webElement.sendKeys(value);
+    }
+
+    public void setValue(WebElement webElement, Keys value) {
+        wait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.sendKeys(value);
     }
 
@@ -58,6 +70,11 @@ public class WebDriverAction {
         return webElement.getAttribute(attribute);
     }
 
+    public String getAttributeFromNonVisible(By selector, String attribute) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(selector));
+        return driver.findElement(selector).getAttribute(attribute);
+    }
+
     public String getAttribute(By selector, String attribute) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(selector));
         return driver.findElement(selector).getAttribute(attribute);
@@ -68,6 +85,26 @@ public class WebDriverAction {
         return webElement.isSelected();
     }
 
+    public boolean isElementInvisible(By locator) {
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        try {
+            driver.findElement(locator);
+        } catch (final NoSuchElementException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isElementPresent(By locator) {
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        try {
+            driver.findElement(locator);
+        } catch (final NoSuchElementException e) {
+            return false;
+        }
+        return true;
+    }
+
     public boolean isElementVisible(final By element) {
         try {
             driver.findElement(element);
@@ -76,4 +113,5 @@ public class WebDriverAction {
         }
         return true;
     }
+
 }

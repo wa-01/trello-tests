@@ -1,16 +1,17 @@
 package com.webaut.project.pages;
 
+import com.webaut.project.pages.list.ListCreateForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class BoardDetails extends AbstractPage{
 
-    private static final String RECENT_BOARDS_lINK_LIST = "(//span[text()='Recent Boards']/ancestor::div/following-sibling::div//a[contains(@href,'%s')])[1]";
+    private static final String RECENT_BOARDS_lINK_LIST = "//span[text()='%s']/../../following-sibling::div//a[contains(@href,'%s')]";
 
 
     @FindBy(css = ".open-add-list.js-open-add-list>span")
-    private WebElement addListbutton;
+    private WebElement addListButton;
 
     @FindBy(css = "button[data-test-id = 'header-boards-menu-button'")
     private WebElement boardMenuButton;
@@ -40,11 +41,7 @@ public class BoardDetails extends AbstractPage{
     @FindBy(css = "div[class='board-menu-container']")
     private WebElement boardMenuContainer;
 
-
-
-
-
-
+    private String LIST_TITLE = "//h2[text()='%s']/parent::div";
 
     public String getCurrentBoardID() {
         action.click(moreLink);
@@ -56,9 +53,9 @@ public class BoardDetails extends AbstractPage{
         return boardName.getText();
     }
 
-    public String isBoardInRecentBoardsList(String boardID) {
-        String boardLink = String.format(RECENT_BOARDS_lINK_LIST, boardID);
-        System.out.println(driver.findElement(By.xpath(boardLink)).getAttribute("title"));
+    public String isBoardInRecentBoardsList(String listName,String boardID) {
+        if(listName.equals("No team"))  listName = "Personal Boards";
+        String boardLink = String.format(RECENT_BOARDS_lINK_LIST,listName, boardID);
        return driver.findElement(By.xpath(boardLink)).getAttribute("title");
     }
 
@@ -84,5 +81,13 @@ public class BoardDetails extends AbstractPage{
         action.click(deleteBoardLInk);
         action.click(confirmInput);
 
+    }
+    public ListCreateForm clickAddListButton() {
+        action.click(addListButton);
+        return new ListCreateForm();
+    }
+
+    public boolean isListVisible(String listName) {
+        return action.isElementInvisible(By.xpath(String.format(LIST_TITLE, listName)));
     }
 }
